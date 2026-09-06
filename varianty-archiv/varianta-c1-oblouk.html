@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masáže [DOPLNIT MĚSTO] — relaxační, sportovní, maderoterapie | uvolni.to</title>
+<meta name="description" content="Masážní studio uvolni.to v [DOPLNIT MĚSTO]. Relaxační a sportovní masáže a brazilská maderoterapie. Jeden terapeut, jeden klient, dost času. Platba i přes Edenred a Benefit plus.">
+<link rel="canonical" href="https://uvolnitomasaze.cz/">
+
+<!-- Favicon: v assets/logo/ NENÍ piktogram.svg (varianta C na něj mířila a padalo to na 404).
+     Uvolnito_ikonavagina.svg je jediná čistá vektorová cesta bez živého textu. -->
+<link rel="icon" href="assets/logo/Uvolnito_ikonavagina.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo/Uvolnito_ikonavagina.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="uvolni.to — masáže">
+<meta property="og:title" content="Masáže [DOPLNIT MĚSTO] — relaxační, sportovní, maderoterapie">
+<meta property="og:description" content="Jeden terapeut, jeden klient, dost času. Relaxační a sportovní masáže a brazilská maderoterapie.">
+<meta property="og:url" content="https://uvolnitomasaze.cz/">
+<meta property="og:image" content="https://uvolnitomasaze.cz/assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg">
+<meta property="og:image:alt" content="Lukáš Václavek při masáži zad ve svém studiu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#304F47">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ═══════════ TOKENY — doslova dle CLAUDE.md, měřeno z loga ═══════════ */
+:root{
+  --c-forest:#304F47; --c-sand:#CBBBA0;
+  --c-forest-dk:#223A34; --c-moss:#4A6E64; --c-sage:#8FA79E;
+  --c-sand-lt:#E4DCCC; --c-cream:#F7F3EC;
+  --c-ink:#1B211F; --c-ink-soft:#55605C; --c-white:#fff; --c-terra:#B5714E;
+
+  --font-display:"Fraunces","Playfair Display",Georgia,serif;
+  --font-body:"Inter",system-ui,-apple-system,sans-serif;
+
+  --fs-hero:clamp(2.75rem,7vw,6rem);
+  --fs-h2:clamp(1.875rem,4vw,3.25rem);
+  --fs-h3:clamp(1.25rem,2vw,1.75rem);
+  --fs-body:clamp(1rem,1.05vw,1.125rem);
+  --fs-small:.875rem;
+
+  --space-section:clamp(5rem,12vh,10rem);
+  --space-block:clamp(2rem,5vh,4rem);
+  --radius:4px; --maxw:1280px; --maxw-text:68ch;
+  --pad:clamp(1.25rem,5vw,3.5rem);
+  --header-h:64px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  /* oblouk — leitmotiv převzatý z Antary */
+  --arch:50% 50% 0 0 / 30% 30% 0 0;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}   /* pozor: scroll-behavior:smooth se pere s Lenisem */
+body{
+  margin:0; background:var(--c-cream); color:var(--c-ink);
+  font-family:var(--font-body); font-size:var(--fs-body);
+  font-weight:300; line-height:1.7; overflow-x:clip;
+}
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+h1,h2,h3{font-family:var(--font-display); font-weight:300; letter-spacing:-.02em; line-height:1.05; margin:0}
+p{margin:0 0 1em; max-width:var(--maxw-text)}
+:focus-visible{outline:2px solid var(--c-sand); outline-offset:3px}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad)}
+.wide{max-width:1620px; margin-inline:auto; padding-inline:var(--pad)}
+section{padding-block:var(--space-section)}
+
+/* ═══════════ ÚČETNÍ RÁM — vlasové linky s příčkami (Antara) ═══════════ */
+.rule{display:flex; align-items:center; gap:0; width:100%}
+.rule i{flex:1; height:1px; background:currentColor; opacity:.32}
+.rule span{padding-inline:1rem; font-size:.68rem; text-transform:uppercase; letter-spacing:.2em; white-space:nowrap; opacity:.85}
+.rule.tick i:first-child{flex:0 0 clamp(2rem,6vw,6rem)}
+
+.label{font-size:.68rem; text-transform:uppercase; letter-spacing:.2em; color:var(--c-moss); display:flex; align-items:center; gap:.8rem}
+.label::before{content:""; width:2.5rem; height:1px; background:var(--c-sand); flex:none}
+.on-dark .label{color:var(--c-sand)}
+
+/* ═══════════ TLAČÍTKA ═══════════ */
+.btn{
+  display:inline-flex; align-items:center; gap:.7rem; position:relative;
+  font-size:.82rem; font-weight:400; letter-spacing:.12em; text-transform:uppercase;
+  padding:1.05rem 2.2rem; border-radius:999px; border:1px solid var(--c-forest);
+  background:var(--c-forest); color:var(--c-cream);
+  transition:background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease);
+}
+.btn::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--c-sand); flex:none}
+.btn:hover{background:transparent; color:var(--c-forest)}
+.btn-light{background:transparent; border-color:rgba(203,187,160,.55); color:var(--c-cream)}
+.btn-light:hover{background:var(--c-sand); color:var(--c-forest-dk); border-color:var(--c-sand)}
+.btn-sm{padding:.65rem 1.4rem; font-size:.72rem}
+
+.ul{position:relative}
+.ul::after{content:""; position:absolute; left:0; right:0; bottom:-3px; height:1px; background:currentColor;
+  transform:scaleX(0); transform-origin:right; transition:transform .45s var(--ease)}
+.ul:hover::after{transform:scaleX(1); transform-origin:left}
+
+/* ═══════════ HLAVIČKA — ledger bar ═══════════ */
+header.site{position:fixed; top:0; left:0; right:0; z-index:100; height:var(--header-h); display:flex; align-items:center; color:var(--c-cream);
+  transition:color .5s var(--ease), background .5s var(--ease)}
+header.site.solid{background:rgba(247,243,236,.92); backdrop-filter:blur(10px); color:var(--c-ink)}
+/* na světlé hlavičce musí světlé tlačítko přebarvit, jinak zmizí */
+header.site.solid .btn-light{color:var(--c-forest); border-color:rgba(48,79,71,.35)}
+header.site.solid .btn-light:hover{color:var(--c-forest-dk)}
+header.site .wide{display:flex; align-items:center; gap:0; width:100%}
+.hd-label{font-size:.68rem; text-transform:uppercase; letter-spacing:.2em; white-space:nowrap; padding-right:1.2rem}
+.hd-line{flex:1; height:1px; background:currentColor; opacity:.3; min-width:1rem}
+/* Wordmark jako obrázek, ne jako text ve Fraunces — značka musí na webu vystupovat
+   ve své skutečné podobě. Dvě verze: krémová nad hero, barevná na světlé hlavičce.
+   (336×124 PNG je zatím strop — vektor od klienta má živý text, viz INVENTURA.md.) */
+.hd-mark{display:flex; align-items:center; padding-inline:1.2rem; line-height:0}
+.hd-mark img{height:26px; width:auto}
+.hd-mark .mk-dark{display:none}
+header.site.solid .hd-mark .mk-light{display:none}
+header.site.solid .hd-mark .mk-dark{display:block}
+.hd-nav{display:none; gap:1.8rem; font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; padding-inline:1.2rem}
+@media(min-width:1000px){.hd-nav{display:flex}}
+.hd-cta{display:none; padding-left:1.2rem}
+@media(min-width:640px){.hd-cta{display:block}}
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative; height:100svh; min-height:600px; overflow:hidden; color:var(--c-cream); background:var(--c-forest-dk)}
+.hero-bg{position:absolute; inset:0; z-index:0}
+.hero-bg img{width:100%; height:100%; object-fit:cover; object-position:center 62%; will-change:transform}
+.hero-bg::after{content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(34,58,52,.72),rgba(34,58,52,.58) 55%,rgba(34,58,52,.82))}
+.hero-inner{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between; padding-block:calc(var(--header-h) + 1rem) clamp(1.5rem,5vh,3rem)}
+
+/* jméno rozstřelené přes celou šířku — hlavní gesto Antary */
+.hero-word{
+  font-family:var(--font-display); font-weight:200; color:var(--c-sand-lt);
+  font-size:clamp(2.4rem,10.5vw,9rem); line-height:1; letter-spacing:.06em;
+  display:flex; justify-content:space-between; width:100%; margin:0;
+}
+.hero-word .ch{display:inline-block; will-change:transform}
+.hero-word .ch.dot{color:var(--c-sand)}
+@media(max-width:600px){.hero-word{letter-spacing:.02em; font-size:14vw}}
+
+.hero-foot{display:grid; gap:1.2rem}
+@media(min-width:760px){.hero-foot{grid-template-columns:auto 1fr auto; align-items:center; gap:0}}
+.hero-tag{font-family:var(--font-display); font-style:italic; font-weight:300; font-size:clamp(1.05rem,2vw,1.5rem); padding-inline:1.2rem; margin:0; max-width:none}
+.hero-foot .hd-line{background:var(--c-sand); opacity:.4}
+.hero-cta{display:flex; flex-wrap:wrap; gap:.7rem; padding-left:1.2rem}
+.hero-mid{display:flex; align-items:flex-end; justify-content:flex-start; flex:1; padding-bottom:clamp(1rem,4vh,3rem)}
+/* H1 je věcná a čitelná, ale opticky podřízená rozstřelené značce nad ní —
+   grafickou hierarchii to nemění, jen ji dává do pořádku pro roboty i čtečky. */
+.hero-h1{
+  font-family:var(--font-body); font-weight:400; font-size:clamp(.95rem,1.5vw,1.15rem);
+  line-height:1.45; letter-spacing:.01em; color:var(--c-cream);
+  max-width:32ch; margin:0 0 .9rem; text-wrap:balance;
+}
+.doplnit-lt{color:var(--c-sand); font-style:italic}
+.hero-sub{max-width:38ch; color:rgba(228,220,204,.82); font-size:1rem; margin:0}
+
+/* fáčkovaný reveal písmen */
+.js .hero-word .ch{transform:translateY(115%)}
+.js .hero-word{overflow:hidden}
+html:not(.js) .hero-word .ch{transform:none}
+
+/* ═══════════ OBLOUKOVÉ PŘEDĚLY ═══════════ */
+.arch-div{display:block; width:100%; height:clamp(48px,7vw,110px); position:relative; z-index:3; margin-bottom:-1px}
+.arch-div.up{margin-top:-1px; margin-bottom:0}
+
+/* ═══════════ OBLOUKOVÉ FOTKY — 9:16 podklady sedí přesně ═══════════ */
+.arch{border-radius:var(--arch); overflow:hidden; position:relative}
+.arch img{width:100%; height:112%; object-fit:cover; will-change:transform}
+.arch::after{content:""; position:absolute; inset:0; border-radius:var(--arch);
+  border:1px solid rgba(203,187,160,.55); pointer-events:none}
+
+/* ═══════════ INTRO / DVOJICE ═══════════ */
+.intro{background:var(--c-cream); position:relative}
+.intro-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
+@media(min-width:900px){.intro-grid{grid-template-columns:1fr 1fr}}
+.intro h2{font-size:var(--fs-h2); max-width:16ch; margin-block:1.5rem}
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:clamp(.75rem,2vw,1.5rem); align-items:end}
+.duo .arch{aspect-ratio:3/4}
+.duo .arch:last-child{margin-bottom:clamp(1.5rem,5vw,3.5rem)}
+
+/* ═══════════ SLUŽBY ═══════════ */
+.svc{background:var(--c-cream)}
+.svc-grid{display:grid; gap:clamp(2rem,4vw,3rem); margin-top:var(--space-block)}
+@media(min-width:820px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+/* Celá karta je odkaz na podstránku služby. Při najetí se přes fotku vysune
+   hlubší popis — na dotyku se místo toho zobrazí rovnou pod fotkou (viz níž),
+   takže se obsah nikam neztratí. */
+.card{display:flex; flex-direction:column; position:relative}
+.card .arch{aspect-ratio:3/4; margin-bottom:1.5rem}
+.card h3{font-size:var(--fs-h3); margin-bottom:.6rem}
+.card p{font-size:.95rem; color:var(--c-ink-soft); margin-bottom:1.2rem}
+
+.card-link{display:flex; flex-direction:column; height:100%; color:inherit}
+/* Obalové prvky karty jsou <span> (musí být uvnitř <a>). Inline element neořezává
+   overflow ani nerespektuje aspect-ratio — bez display:block by oblouk zmizel. */
+.card-arch-wrap{display:block; position:relative; margin-bottom:1.5rem}
+.card-link .arch{display:block; margin-bottom:0}
+.card-more{display:block}
+.card .arch{transition:transform .6s var(--ease)}
+.card-link:hover .arch{transform:translateY(-6px)}
+.card-link:hover .arch img{transform:scale(1.04)}
+.card .arch img{transition:transform .8s var(--ease)}
+
+/* vysouvací panel s hlubším popisem */
+.card-more{
+  position:absolute; inset:auto 0 0 0; z-index:2;
+  background:linear-gradient(180deg, rgba(34,58,52,0) 0%, rgba(34,58,52,.94) 26%, rgba(34,58,52,.98) 100%);
+  color:var(--c-sand-lt); border-radius:0 0 var(--radius) var(--radius);
+  padding:3.5rem clamp(1rem,2vw,1.4rem) clamp(1rem,2vw,1.4rem);
+  transform:translateY(101%); opacity:0;
+  transition:transform .55s var(--ease), opacity .4s var(--ease);
+  pointer-events:none;
+}
+.card-more h4{font-family:var(--font-body); font-size:.66rem; text-transform:uppercase; letter-spacing:.18em; color:var(--c-sand); margin:0 0 .7rem; font-weight:500}
+.card-more ul{list-style:none; margin:0 0 1rem; padding:0; display:grid; gap:.45rem; font-size:.88rem; line-height:1.5}
+.card-more li{position:relative; padding-left:1rem}
+.card-more li::before{content:""; position:absolute; left:0; top:.6em; width:4px; height:4px; border-radius:50%; background:var(--c-sand)}
+.card-more .go{display:inline-flex; align-items:center; gap:.5rem; font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--c-cream)}
+.card-more .go::after{content:"→"; transition:transform .4s var(--ease)}
+
+/* Panel se posouvá jen tam, kde je myš. Dotyk a klávesnice mají vlastní řešení níž. */
+@media(hover:hover) and (pointer:fine){
+  .card-arch-wrap{display:block; position:relative; overflow:hidden; border-radius:var(--arch); margin-bottom:1.5rem}
+  .card-arch-wrap .arch{margin-bottom:0}
+  .card-link:hover .card-more,
+  .card-link:focus-visible .card-more{transform:translateY(0); opacity:1}
+  .card-link:hover .card-more .go::after{transform:translateX(4px)}
+}
+/* Bez myši (mobil, tablet) je panel normální součástí karty pod fotkou. */
+@media not all and (hover:hover){
+  .card-more{
+    position:static; transform:none; opacity:1; background:none; color:var(--c-ink-soft);
+    padding:0 0 1.1rem; pointer-events:auto;
+  }
+  .card-more h4{color:var(--c-moss)}
+  .card-more li::before{background:var(--c-forest)}
+  .card-more .go{color:var(--c-forest)}
+}
+/* CENA — konverzní obsah, žádná animace */
+.card .price{display:flex; margin-top:auto; padding-top:1.2rem; border-top:1px solid rgba(48,79,71,.18);
+  display:flex; align-items:baseline; justify-content:space-between; gap:1rem}
+.card .price b{font-family:var(--font-display); font-weight:400; font-size:1.35rem; color:var(--c-forest)}
+.card .price small{font-size:var(--fs-small); color:var(--c-ink-soft); letter-spacing:.06em}
+.doplnit{color:var(--c-terra); font-style:italic}
+
+/* ═══════════ TMAVÉ SEKCE ═══════════ */
+.dark{background:var(--c-forest); color:var(--c-sand-lt); position:relative}
+.dark h2,.dark h3{color:var(--c-cream)}
+.dark p{color:rgba(228,220,204,.8)}
+.dark .rule{color:var(--c-sand)}
+.deep{background:var(--c-forest-dk); color:var(--c-sand-lt)}
+.deep h2{color:var(--c-cream)}
+.deep p{color:rgba(228,220,204,.8)}
+
+.tranq-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
+@media(min-width:900px){.tranq-grid{grid-template-columns:.9fr 1fr}}
+.tranq-grid .arch{aspect-ratio:3/4; max-width:26rem}
+.tranq-grid .arch::after{border-color:rgba(203,187,160,.4)}
+
+/* ═══════════ PROCES ═══════════ */
+.steps{display:grid; gap:0; margin-top:var(--space-block)}
+.step{display:grid; grid-template-columns:3.5rem 1fr; gap:1.2rem; padding-block:1.6rem; border-top:1px solid rgba(203,187,160,.22); align-items:start}
+@media(min-width:900px){.step{grid-template-columns:3.5rem 16rem 1fr; gap:2rem; align-items:baseline}}
+.step:last-child{border-bottom:1px solid rgba(203,187,160,.22)}
+.step-n{font-family:var(--font-display); font-weight:300; color:var(--c-sand); font-size:1rem; letter-spacing:.1em}
+.step h3{font-size:var(--fs-h3)}
+.step p{margin:0; font-size:.95rem; max-width:46ch}
+
+/* ═══════════ ČÍSLA ═══════════ */
+.nums{display:grid; grid-template-columns:repeat(2,1fr); gap:2.5rem 1.5rem; margin-top:var(--space-block)}
+@media(min-width:860px){.nums{grid-template-columns:repeat(4,1fr)}}
+.num b{display:block; font-family:var(--font-display); font-weight:300; font-size:clamp(2.2rem,4.2vw,3.4rem); line-height:1; color:var(--c-cream); letter-spacing:-.03em}
+.num span{display:block; font-size:var(--fs-small); color:rgba(228,220,204,.7); margin-top:.6rem}
+
+/* ═══════════ O MNĚ ═══════════ */
+.about-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
+@media(min-width:900px){.about-grid{grid-template-columns:.8fr 1fr}}
+.about-grid .arch{aspect-ratio:3/4}
+.about-grid .arch img{object-position:center 20%}
+.about h2{font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch}
+.sig{margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(48,79,71,.18); font-size:var(--fs-small)}
+.sig b{display:block; font-family:var(--font-display); font-weight:400; font-size:1.1rem}
+
+/* ═══════════ RECENZE ═══════════ */
+.revs{display:grid; gap:clamp(1.5rem,3vw,2.5rem); margin-top:var(--space-block)}
+@media(min-width:900px){.revs{grid-template-columns:repeat(3,1fr)}}
+.rev{margin:0; padding-top:1.5rem; border-top:1px solid rgba(203,187,160,.3)}
+.rev .stars{color:var(--c-sand); letter-spacing:.25em; font-size:.8rem; margin-bottom:1rem}
+.rev p{font-family:var(--font-display); font-style:italic; font-weight:300; font-size:1.15rem; line-height:1.45; margin-bottom:1rem}
+.rev cite{font-style:normal; font-size:var(--fs-small); opacity:.7}
+
+/* ═══════════ BENEFITY ═══════════ */
+.benef-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
+@media(min-width:900px){.benef-grid{grid-template-columns:1fr .7fr}}
+.chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.8rem}
+.chip{border:1px solid rgba(48,79,71,.2); border-radius:999px; padding:.55rem 1.2rem; font-size:.82rem; letter-spacing:.04em}
+.benef figure{margin:0}
+.benef figure img{border-radius:var(--radius)}
+.benef figcaption{font-size:var(--fs-small); color:var(--c-ink-soft); margin-top:.6rem}
+
+/* ═══════════ POUKAZ ═══════════ */
+.voucher{text-align:center}
+.voucher h2{font-size:var(--fs-h2); margin-inline:auto; max-width:16ch}
+.voucher p{margin-inline:auto}
+
+/* ═══════════ KONTAKT — bez animace ═══════════ */
+.contact-grid{display:grid; gap:clamp(2rem,5vw,4rem); margin-top:var(--space-block)}
+@media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr}}
+.dl{display:grid; gap:0; margin:0}
+.dl div{display:grid; grid-template-columns:8rem 1fr; gap:1rem; padding-block:1.1rem; border-bottom:1px solid rgba(48,79,71,.14); font-size:.95rem}
+.dl dt{color:var(--c-ink-soft); font-size:.7rem; text-transform:uppercase; letter-spacing:.16em}
+.dl dd{margin:0}
+.embed{border:1px solid var(--c-sand); border-radius:var(--radius); padding:clamp(2rem,5vw,3rem); text-align:center; background:var(--c-white)}
+
+/* ═══════════ PATIČKA ═══════════ */
+footer.site{background:var(--c-forest-dk); color:var(--c-sand-lt); padding-block:clamp(3rem,7vh,5rem) 2rem}
+.foot-motto{font-family:var(--font-display); font-style:italic; font-weight:300; font-size:clamp(1.4rem,3.4vw,2.6rem); color:var(--c-cream); text-align:center; max-width:20ch; margin:0 auto clamp(3rem,7vh,5rem)}
+.foot-grid{display:grid; gap:2.5rem}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.3fr 1fr 1fr}}
+footer.site h4{font-family:var(--font-body); font-size:.68rem; text-transform:uppercase; letter-spacing:.2em; color:var(--c-sand); margin:0 0 1.2rem; font-weight:400}
+footer.site ul{list-style:none; margin:0; padding:0; display:grid; gap:.7rem; font-size:.92rem}
+footer.site a{color:rgba(228,220,204,.82)}
+footer.site a:hover{color:var(--c-white)}
+.foot-mark{display:block; line-height:0; margin-bottom:1.2rem}
+.foot-mark img{height:38px; width:auto}
+.foot-bot{margin-top:3rem; padding-top:1.5rem; border-top:1px solid rgba(203,187,160,.2); display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; font-size:.78rem; color:rgba(228,220,204,.6)}
+
+/* ═══════════ STICKY CTA NA MOBILU ═══════════ */
+.mobile-bar{position:fixed; left:0; right:0; bottom:0; z-index:120; display:flex; gap:.5rem; padding:.6rem;
+  background:rgba(247,243,236,.95); backdrop-filter:blur(10px); border-top:1px solid rgba(48,79,71,.12)}
+.mobile-bar .btn{flex:1; justify-content:center}
+.mobile-bar .btn-light{border-color:rgba(48,79,71,.3); color:var(--c-forest)}
+@media(min-width:640px){.mobile-bar{display:none}}
+@media(max-width:639px){body{padding-bottom:76px}}
+
+
+/* ═══════════ PORTÁL — jediná pinovaná sekce, hlavní moment stránky ═══════════
+   Oblouk z loga i z předělů se tady stane průchodem: při scrollu se rozevře
+   z malého tvaru přes celou obrazovku. Vypnuto na dotyku i při reduced-motion. */
+.portal{position:relative; background:var(--c-cream); padding:0; overflow:clip}
+.portal-stage{
+  position:relative; min-height:100svh; display:grid; place-items:center;
+  padding-block:var(--space-section);
+}
+.portal-frame{
+  position:relative; width:min(46vw,420px); aspect-ratio:3/4; overflow:hidden;
+  --k:1;
+  border-radius:calc(50% * var(--k)) calc(50% * var(--k)) 0 0 / calc(30% * var(--k)) calc(30% * var(--k)) 0 0;
+  will-change:transform; transform-origin:center center; background:var(--c-forest-dk);
+}
+.portal-frame img{width:100%; height:100%; object-fit:cover; object-position:center 55%}
+.portal-frame::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  border:1px solid rgba(203,187,160,.55); border-radius:inherit;
+}
+.portal-copy{
+  position:absolute; inset:auto 0 clamp(2rem,8vh,5rem); z-index:3; text-align:center;
+  padding-inline:var(--pad); pointer-events:none; opacity:0;
+}
+.portal-copy p{
+  font-family:var(--font-display); font-style:italic; font-weight:300;
+  font-size:clamp(1.4rem,3.6vw,2.8rem); line-height:1.25; color:var(--c-cream);
+  margin:0 auto; max-width:20ch; text-shadow:0 2px 24px rgba(34,58,52,.55);
+}
+.portal-cue{
+  position:absolute; inset:auto 0 clamp(1rem,3vh,2rem); text-align:center; z-index:3;
+  font-size:.62rem; text-transform:uppercase; letter-spacing:.2em; color:var(--c-ink-soft);
+}
+/* Bez JS, na dotyku i při reduced-motion: obyčejný obrázek s popiskem pod ním. */
+html:not(.js) .portal-stage,.no-motion .portal-stage{min-height:0}
+html:not(.js) .portal-copy,.no-motion .portal-copy{position:static; opacity:1; margin-top:2rem}
+html:not(.js) .portal-copy p,.no-motion .portal-copy p{color:var(--c-forest); text-shadow:none}
+html:not(.js) .portal-cue,.no-motion .portal-cue{display:none}
+
+/* ═══════════ UKAZATEL POSTUPU ČTENÍ ═══════════ */
+.progress{position:fixed; top:0; left:0; right:0; height:2px; z-index:130; pointer-events:none}
+.progress i{display:block; height:100%; background:var(--c-sand); transform:scaleX(0); transform-origin:left}
+html:not(.js) .progress,.no-motion .progress{display:none}
+
+/* ═══════════ CENÍK — konverzní obsah, bez animace ═══════════ */
+.cenik{background:var(--c-sand-lt)}
+.cenik table{width:100%; border-collapse:collapse; margin-top:var(--space-block); max-width:52rem}
+.cenik caption{text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.18em; color:var(--c-ink-soft); padding-bottom:1rem}
+.cenik th,.cenik td{text-align:left; padding:1.05rem .5rem; border-bottom:1px solid rgba(48,79,71,.2); vertical-align:baseline}
+.cenik th{font-weight:500; font-size:.7rem; text-transform:uppercase; letter-spacing:.14em; color:var(--c-ink-soft)}
+.cenik td:first-child{font-family:var(--font-display); font-size:1.1rem}
+.cenik td:first-child a{color:var(--c-forest)}
+.cenik td:last-child{text-align:right; font-family:var(--font-display); font-size:1.1rem; white-space:nowrap}
+
+/* ═══════════ FAQ — FAQPage schéma, vstup do rozšířených výsledků ═══════════ */
+.faq-list{margin-top:var(--space-block); border-top:1px solid rgba(48,79,71,.2); max-width:60rem}
+.faq-list details{border-bottom:1px solid rgba(48,79,71,.2)}
+.faq-list summary{
+  cursor:pointer; list-style:none; padding-block:1.3rem; padding-right:2.5rem; position:relative;
+  font-family:var(--font-display); font-size:clamp(1.05rem,1.9vw,1.3rem); color:var(--c-ink);
+}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{
+  content:""; position:absolute; right:.4rem; top:50%; width:11px; height:11px; margin-top:-6px;
+  border-right:1px solid var(--c-forest); border-bottom:1px solid var(--c-forest);
+  transform:rotate(45deg); transition:transform .35s var(--ease);
+}
+.faq-list details[open] summary::after{transform:rotate(-135deg)}
+.faq-list p{margin:0 0 1.4rem; color:var(--c-ink-soft); font-size:.98rem; max-width:62ch}
+
+/* ═══════════ PREFERS-REDUCED-MOTION ═══════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .hero-word .ch{transform:none!important}
+  .arch img,.hero-bg img{transform:none!important; height:100%}
+  .portal-frame{transform:none!important; width:min(46vw,420px)}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><i id="progBar"></i></div>
+
+<header class="site" id="head">
+  <div class="wide">
+    <span class="hd-label">Masážní studio</span>
+    <i class="hd-line"></i>
+    <a href="#hero" class="hd-mark" aria-label="uvolni.to — nahoru">
+      <img class="mk-light" src="assets/logo/ODVOZENO-wordmark-kremove.png" alt="uvolni.to masáže" width="112" height="41">
+      <img class="mk-dark" src="assets/logo/ODVOZENO-wordmark-barevne.png" alt="" aria-hidden="true" width="112" height="41">
+    </a>
+    <i class="hd-line"></i>
+    <nav class="hd-nav" aria-label="Hlavní navigace">
+      <a href="#sluzby" class="ul">Masáže</a>
+      <a href="#cenik" class="ul">Ceník</a>
+      <a href="#proces" class="ul">Průběh</a>
+      <a href="#o-mne" class="ul">O mně</a>
+      <a href="#benefity" class="ul">Benefity</a>
+      <a href="#kontakt" class="ul">Kontakt</a>
+    </nav>
+    <i class="hd-line"></i>
+    <span class="hd-cta"><a href="#rezervace" class="btn btn-sm btn-light">Rezervovat</a></span>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg" width="1066" height="1600"
+         alt="Lukáš Václavek při masáži zad ve svém studiu" fetchpriority="high" id="heroImg">
+  </div>
+  <div class="wide hero-inner">
+    <!-- Grafické rozstřelení značky zůstává jako hlavní gesto — ale je to <p>, ne <h1>.
+         H1 je nejsilnější on-page signál a nesmí být promrhaná na název firmy. -->
+    <p class="hero-word" id="heroWord" aria-hidden="true">
+      <span class="ch">u</span><span class="ch">v</span><span class="ch">o</span><span class="ch">l</span><span class="ch">n</span><span class="ch">i</span><span class="ch dot">.</span><span class="ch">t</span><span class="ch">o</span>
+    </p>
+
+    <div class="hero-mid">
+      <div>
+        <h1 class="hero-h1">Masáže <span class="doplnit-lt">[DOPLNIT&nbsp;MĚSTO]</span> — relaxační, sportovní a&nbsp;brazilská maderoterapie</h1>
+        <p class="hero-sub">Jeden terapeut, jeden klient, žádný sériový provoz.
+          Nejdřív se ptám, kde to drží. Teprve pak sahám na&nbsp;záda.</p>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <p class="hero-tag">Uvolnit, obnovit, vrátit se&nbsp;k&nbsp;sobě.</p>
+      <i class="hd-line"></i>
+      <div class="hero-cta">
+        <a href="#rezervace" class="btn btn-light">Rezervovat termín</a>
+        <a href="#sluzby" class="btn btn-light">Masáže</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="arch-div" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<!-- ═══════════ INTRO ═══════════ -->
+<section class="intro" id="intro">
+  <div class="wide intro-grid">
+    <div>
+      <p class="label" data-rv>Masážní studio Uvolni.to</p>
+      <h2 data-rv>Sto let stará řemesla, dnešní tělo</h2>
+      <p data-rv>Masáž není wellness dekorace. Je to práce s&nbsp;tím, co si tělo odneslo z&nbsp;posledních měsíců&nbsp;—
+        z&nbsp;kanceláře, z&nbsp;tréninku, ze spánku na špatném polštáři.</p>
+      <p data-rv>Nemám velký salon ani tým masérek. Jsem tu jen já, jeden lehátko a&nbsp;dost času na to,
+        abychom napětí našli a&nbsp;rozebrali, ne jen přejeli.</p>
+      <p data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznat Lukáše</a></p>
+    </div>
+    <div class="duo">
+      <div class="arch" data-rv><img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.42.34.jpeg" width="1066" height="1600" alt="Detail lávových kamenů na zádech" loading="lazy" data-par></div>
+      <div class="arch" data-rv><img src="assets/foto/WhatsApp-Image-2026-03-08-at-18.06.56.jpeg" width="1066" height="1600" alt="Detail masáže ramen" loading="lazy" data-par></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SLUŽBY ═══════════ -->
+<section class="svc" id="sluzby">
+  <div class="wide">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Masáže</span><i></i></div>
+    <h2 data-rv style="font-size:var(--fs-h2); margin-top:var(--space-block); max-width:18ch">Tři masáže. Každá s&nbsp;jiným cílem.</h2>
+
+    <div class="svc-grid">
+      <article class="card" data-rv>
+        <a class="card-link" href="masaz-relaxacni.html">
+          <span class="card-arch-wrap">
+            <span class="arch"><img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.44.40.jpeg" width="1066" height="1600" alt="Relaxační masáž s lávovými kameny" loading="lazy" data-par></span>
+            <span class="card-more">
+              <h4>Co to obnáší</h4>
+              <ul>
+              <li>Celotělová, nebo jen záda a&nbsp;šíje</li>
+              <li>Teplý olej, na&nbsp;přání lávové kameny</li>
+              <li>Pro sedavou práci a&nbsp;tuhnoucí krk</li>
+              <li>Tlak se ladí průběžně, nemusí bolet</li>
+              </ul>
+              <span class="go">Zobrazit detail masáže</span>
+            </span>
+          </span>
+          <h3>Relaxační masáž</h3>
+          <p>Pomalé, hluboké tempo. Odbourání stresu, uvolnění krční páteře a&nbsp;ramen. Na přání s&nbsp;lávovými kameny.</p>
+          <span class="price"><b>[DOPLNIT] Kč</b><small>60&nbsp;/&nbsp;90 min</small></span>
+        </a>
+      </article>
+
+      <article class="card" data-rv>
+        <a class="card-link" href="masaz-sportovni.html">
+          <span class="card-arch-wrap">
+            <span class="arch"><img src="assets/foto/WhatsApp-Image-2026-03-08-at-18.06.27.jpeg" width="1066" height="1600" alt="Sportovní masáž zad" loading="lazy" data-par></span>
+            <span class="card-more">
+              <h4>Co to obnáší</h4>
+              <ul>
+              <li>Předstartovní i&nbsp;regenerační varianta</li>
+              <li>Práce se spouštěcími body</li>
+              <li>Pro běžce, kola, posilovnu</li>
+              <li>Doplním dva tři cviky na&nbsp;doma</li>
+              </ul>
+              <span class="go">Zobrazit detail masáže</span>
+            </span>
+          </span>
+          <h3>Sportovní masáž</h3>
+          <p>Cílená práce se svalovým napětím a&nbsp;spouštěcími body. Před výkonem jako příprava, po výkonu jako regenerace.</p>
+          <span class="price"><b>[DOPLNIT] Kč</b><small>45&nbsp;/&nbsp;60 min</small></span>
+        </a>
+      </article>
+
+      <article class="card" data-rv>
+        <a class="card-link" href="masaz-maderoterapie.html">
+          <span class="card-arch-wrap">
+            <span class="arch"><img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.52.32.jpeg" width="1354" height="2048" alt="Maderoterapie dřevěným válečkem" loading="lazy" data-par></span>
+            <span class="card-more">
+              <h4>Co to obnáší</h4>
+              <ul>
+              <li>Dřevěné válečky a&nbsp;tvarované nástroje</li>
+              <li>Podpora lymfy a&nbsp;prokrvení</li>
+              <li>Doporučuje se v&nbsp;sérii, ne jednorázově</li>
+              <li>Pevnější tlak než u&nbsp;klasické masáže</li>
+              </ul>
+              <span class="go">Zobrazit detail masáže</span>
+            </span>
+          </span>
+          <h3>Brazilská maderoterapie</h3>
+          <p>Technika s&nbsp;dřevěnými nástroji. Podpora lymfatického systému, zpevnění pokožky a&nbsp;formování postavy.</p>
+          <span class="price"><b>[DOPLNIT] Kč</b><small>60 min</small></span>
+        </a>
+      </article>
+    </div>
+
+    <p style="margin-top:var(--space-block); color:var(--c-ink-soft)">Nevíte, která je pro vás?
+      <a href="#kontakt" class="ul" style="color:var(--c-forest)">Napište mi</a> — poradím.</p>
+  </div>
+</section>
+
+<!-- ═══════════ PORTÁL — hlavní moment stránky, jediná pinovaná sekce ═══════════ -->
+<section class="portal" id="portal" aria-label="Vstup do studia">
+  <div class="portal-stage" id="portalStage">
+    <div class="portal-frame" id="portalFrame">
+      <img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.56.21.jpeg" width="1066" height="1600"
+           alt="Interiér masážního studia uvolni.to" loading="lazy">
+    </div>
+    <div class="portal-copy" id="portalCopy">
+      <p>Za tímhle obloukem se hodinu nikam nespěchá.</p>
+    </div>
+    <p class="portal-cue" aria-hidden="true">Scrollujte dál</p>
+  </div>
+</section>
+
+<!-- ═══════════ CENÍK — konverzní obsah, bez animace ═══════════ -->
+<section class="cenik" id="cenik">
+  <div class="wide">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Ceník</span><i></i></div>
+    <h2 style="font-size:var(--fs-h2); margin-top:var(--space-block); max-width:18ch">Ceny předem, ne až v&nbsp;rezervaci</h2>
+    <table>
+      <caption>Platné od <span class="doplnit">doplnit</span>. Ceny jsou konečné. <span class="doplnit">doplnit — plátce DPH?</span></caption>
+      <thead><tr><th scope="col">Masáž</th><th scope="col">Délka</th><th scope="col" style="text-align:right">Cena</th></tr></thead>
+      <tbody>
+        <tr><td><a href="masaz-relaxacni.html" class="ul">Relaxační masáž</a></td><td>60 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td><a href="masaz-relaxacni.html" class="ul">Relaxační masáž</a></td><td>90 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td><a href="masaz-relaxacni.html" class="ul">Relaxační masáž s&nbsp;lávovými kameny</a></td><td>90 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td><a href="masaz-sportovni.html" class="ul">Sportovní masáž — částečná</a></td><td>45 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td><a href="masaz-sportovni.html" class="ul">Sportovní masáž — celotělová</a></td><td>60 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td><a href="masaz-maderoterapie.html" class="ul">Brazilská maderoterapie</a></td><td>60 minut</td><td>[DOPLNIT] Kč</td></tr>
+        <tr><td>Dárkový poukaz</td><td>dle výběru</td><td>od [DOPLNIT] Kč</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1.4rem; font-size:var(--fs-small); color:var(--c-ink-soft)">Platba hotově, převodem i&nbsp;benefitními poukazy. Zrušení termínu prosím alespoň 24&nbsp;hodin předem.</p>
+  </div>
+</section>
+
+<svg class="arch-div" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<!-- ═══════════ KLID / STUDIO ═══════════ -->
+<section class="dark on-dark" id="studio">
+  <div class="wide tranq-grid">
+    <div class="arch" data-rv><img src="assets/foto/WhatsApp-Image-2026-03-08-at-17.56.21.jpeg" width="1066" height="1600" alt="Masážní studio při práci" loading="lazy" data-par></div>
+    <div>
+      <p class="label" data-rv>Studio</p>
+      <h2 data-rv style="font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch">Vstupte do klidu</h2>
+      <p data-rv>Studio je otevřené jen na objednání. Nepotkáte se s&nbsp;nikým jiným, nebudete na nic čekat
+        a&nbsp;nikdo za dveřmi nečeká na vás.</p>
+      <p data-rv>Teplo, ticho, jedno lehátko. Devadesát minut, kdy po vás nikdo nic nechce.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════ PRŮBĚH ═══════════ -->
+  <div class="wide" id="proces" style="margin-top:var(--space-section)">
+    <div class="rule tick"><i></i><span>Jak to probíhá</span><i></i></div>
+    <div class="steps">
+      <div class="step" data-rv><div class="step-n">01</div><h3>Krátká konzultace</h3><p>Zeptám se, co vás trápí, kde máte bolest a&nbsp;na co si dát pozor. Dvě minuty, které rozhodnou o&nbsp;celé masáži.</p></div>
+      <div class="step" data-rv><div class="step-n">02</div><h3>Nastavení tlaku</h3><p>Během prvních minut ladíme intenzitu. Kdykoli řeknete, přitlačím nebo povolím.</p></div>
+      <div class="step" data-rv><div class="step-n">03</div><h3>Samotná masáž</h3><p>60 nebo 90 minut soustředěné práce. Žádné hlídání hodin, žádný spěch na dalšího klienta.</p></div>
+      <div class="step" data-rv><div class="step-n">04</div><h3>Co dělat potom</h3><p>Dostanete pár konkrétních tipů na doma&nbsp;— protažení, pitný režim, kdy přijít znovu.</p></div>
+    </div>
+
+    <div class="nums">
+      <div class="num" data-rv><b data-count="5" data-suffix=" let">5 let</b><span>praxe <span class="doplnit">ověřit</span></span></div>
+      <div class="num" data-rv><b data-count="1200" data-suffix="+">1200+</b><span>odmasírovaných hodin <span class="doplnit">ověřit</span></span></div>
+      <div class="num" data-rv><b>4,9</b><span>hodnocení klientů</span></div>
+      <div class="num" data-rv><b>1:1</b><span>vždy jen vy a&nbsp;terapeut</span></div>
+    </div>
+  </div>
+</section>
+
+<svg class="arch-div up" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<!-- ═══════════ O MNĚ ═══════════ -->
+<section class="about" id="o-mne">
+  <div class="wide about-grid">
+    <div class="arch" data-rv><img src="assets/foto/WhatsApp-Image-2026-03-08-at-18.12.14.jpeg" width="1580" height="2048" alt="Portrét Lukáše Václavka ve studiu" loading="lazy" data-par></div>
+    <div>
+      <p class="label" data-rv>O mně</p>
+      <h2 data-rv>Masáž není luxus. Je to údržba.</h2>
+      <p data-rv>Jmenuji se Lukáš Václavek a&nbsp;masáže dělám proto, že mě baví vidět, jak z&nbsp;člověka
+        během hodiny spadne napětí, které v&nbsp;sobě nosil měsíce.</p>
+      <p data-rv>Vás pokaždé masíruje ten samý člověk, který si pamatuje, co vás bolelo minule.
+        Podle mě je to ten hlavní rozdíl.</p>
+      <p class="doplnit" data-rv>doplnit: vzdělání, kurzy, certifikace</p>
+      <div class="sig" data-rv><b>Lukáš Václavek</b>Masér a&nbsp;majitel studia</div>
+    </div>
+  </div>
+</section>
+
+<svg class="arch-div" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest-dk)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<!-- ═══════════ RECENZE ═══════════ -->
+<section class="deep on-dark" aria-label="Reference">
+  <div class="wide">
+    <div class="rule tick" style="color:var(--c-sand)"><i></i><span>Reference</span><i></i></div>
+    <div class="revs">
+      <blockquote class="rev" data-rv><div class="stars" aria-label="5 z 5 hvězdiček">★★★★★</div><p>„Konečně někdo, kdo se zeptá, co mě bolí, a&nbsp;pak na tom skutečně pracuje.“</p><cite>Klientka <span class="doplnit">doplnit</span></cite></blockquote>
+      <blockquote class="rev" data-rv><div class="stars" aria-label="5 z 5 hvězdiček">★★★★★</div><p>„Chodím po sportu na regeneraci. Rozdíl v&nbsp;nohách poznám hned druhý den.“</p><cite>Klient <span class="doplnit">doplnit</span></cite></blockquote>
+      <blockquote class="rev" data-rv><div class="stars" aria-label="5 z 5 hvězdiček">★★★★★</div><p>„Příjemné prostředí a&nbsp;profesionální přístup. Rozhodně se vrátím.“</p><cite>Klientka <span class="doplnit">doplnit</span></cite></blockquote>
+    </div>
+    <p style="font-size:var(--fs-small); margin-top:2rem; opacity:.7">Hodnocení pochází z&nbsp;Reservia a&nbsp;Google. <span class="doplnit">doplnit odkaz na profil</span></p>
+  </div>
+</section>
+
+<svg class="arch-div up" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<!-- ═══════════ BENEFITY ═══════════ -->
+<section class="benef" id="benefity">
+  <div class="wide benef-grid">
+    <div>
+      <p class="label" data-rv>Platba</p>
+      <h2 data-rv style="font-size:var(--fs-h2); margin-block:1.5rem; max-width:16ch">Masáž vám může zaplatit zaměstnavatel</h2>
+      <p data-rv>Přijímám zaměstnanecké benefity&nbsp;— pro spoustu klientů to znamená, že za masáž
+        nezaplatí ze svého ani korunu. Stačí zmínit při rezervaci.</p>
+      <div class="chips">
+        <span class="chip" data-rv>Edenred</span><span class="chip" data-rv>Benefit plus</span>
+        <span class="chip" data-rv>Hotovost</span><span class="chip" data-rv>Převodem</span>
+        <span class="chip doplnit" data-rv>Multisport? ověřit</span><span class="chip doplnit" data-rv>Pluxee? ověřit</span>
+      </div>
+    </div>
+    <figure data-rv>
+      <img src="assets/ostatni/EdenredBenefits-samolepka.jpg" width="1426" height="1658" alt="Samolepka Edenred na dveřích studia" loading="lazy">
+      <figcaption>Samolepka na dveřích studia</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════ POUKAZ ═══════════ -->
+<section class="voucher">
+  <div class="wrap">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Dárkový poukaz</span><i></i></div>
+    <h2 data-rv style="margin-top:var(--space-block)">Darujte hodinu, kdy nikdo nic nechce</h2>
+    <p data-rv style="margin-top:1.5rem; color:var(--c-ink-soft)">Poukaz na libovolnou masáž nebo na konkrétní částku.
+      Platnost 12&nbsp;měsíců, předám vám ho tištěný i&nbsp;v&nbsp;PDF.</p>
+    <p data-rv><a href="#kontakt" class="btn">Objednat poukaz</a></p>
+  </div>
+</section>
+
+<!-- ═══════════ ČASTÉ DOTAZY — zdroj pro FAQPage schéma ═══════════ -->
+<section class="faq" id="faq">
+  <div class="wide">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Časté dotazy</span><i></i></div>
+    <h2 data-rv style="font-size:var(--fs-h2); margin-top:var(--space-block); max-width:16ch">Na co se ptáte nejčastěji</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Musí masáž bolet, aby zabrala?</summary>
+        <p>Ne. Bolest je informace, ne cíl. Tlak nastavíme během prvních minut tak, aby byl na&nbsp;hraně příjemného, a&nbsp;kdykoli během masáže ho můžete nechat ubrat. Sval, který se brání, se stejně neuvolní.</p>
+      </details>
+      <details>
+        <summary>Jak často má smysl chodit?</summary>
+        <p>U&nbsp;sedavé práce a&nbsp;tuhnoucí šíje obvykle jednou za&nbsp;tři až čtyři týdny. U&nbsp;sportovní regenerace podle tréninkového cyklu. Na&nbsp;konci každé masáže dostanete odhad, kdy má smysl přijít znovu — někdy je odpověď, že zatím vůbec.</p>
+      </details>
+      <details>
+        <summary>Můžu masáž zaplatit zaměstnaneckými benefity?</summary>
+        <p>Ano. Přijímám Edenred a&nbsp;Benefit plus, <span class="doplnit">doplnit další programy</span>. Stačí to zmínit při rezervaci, nic dopředu neřešíte a&nbsp;platí se až na&nbsp;místě.</p>
+      </details>
+      <details>
+        <summary>Co si mám vzít s&nbsp;sebou?</summary>
+        <p>Nic. Ručníky, prostěradlo i&nbsp;olej jsou tady. Přijďte radši o&nbsp;pár minut dřív, ať se dá v&nbsp;klidu projít, co vás trápí, a&nbsp;nekrátí to čas na&nbsp;lehátku.</p>
+      </details>
+      <details>
+        <summary>Je maderoterapie vhodná pro každého?</summary>
+        <p>Většinou ano, ale má svá omezení — čerstvá poranění, křečové žíly v&nbsp;místě aplikace, těhotenství nebo onkologická léčba jsou důvod se předem poradit. Napište mi, co řešíte, a&nbsp;řeknu rovnou, jestli má smysl přijít.</p>
+      </details>
+      <details>
+        <summary>Kde studio najdu a&nbsp;kde zaparkuju?</summary>
+        <p><span class="doplnit">doplnit adresu, dopravu a parkování</span></p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ KONTAKT + REZERVACE ═══════════ -->
+<section id="kontakt">
+  <div class="wide">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Kde mě najdete</span><i></i></div>
+    <div class="contact-grid">
+      <div>
+        <h2 style="font-size:var(--fs-h2); margin-bottom:1.5rem">Kontakt</h2>
+        <dl class="dl">
+          <div><dt>Adresa</dt><dd class="doplnit">doplnit ulici, město a PSČ</dd></div>
+          <div><dt>Telefon</dt><dd class="doplnit">doplnit</dd></div>
+          <div><dt>E-mail</dt><dd class="doplnit">doplnit</dd></div>
+          <div><dt>Otevírací doba</dt><dd class="doplnit">doplnit</dd></div>
+          <div><dt>Parkování</dt><dd class="doplnit">doplnit</dd></div>
+        </dl>
+      </div>
+      <div id="rezervace">
+        <h2 style="font-size:var(--fs-h2); margin-bottom:1.5rem">Rezervace</h2>
+        <div class="embed">
+          <p style="margin-inline:auto"><b>Zde se vloží rezervační kalendář</b></p>
+          <p style="font-size:var(--fs-small); color:var(--c-ink-soft); margin-inline:auto">Reservio se vkládá jako iframe
+            přímo do stránky, aby klient neodcházel na cizí doménu. Potřebuji URL vašeho profilu.</p>
+          <p class="doplnit" style="margin:0 auto">doplnit odkaz na Reservio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<svg class="arch-div" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest-dk)">
+  <path d="M0,120 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1440,120 Z"></path>
+</svg>
+
+<footer class="site">
+  <div class="wide">
+    <p class="foot-motto">Napětí není něco, s&nbsp;čím musíte žít.</p>
+    <div class="foot-grid">
+      <div>
+        <div class="foot-mark"><img src="assets/logo/ODVOZENO-wordmark-kremove.png" alt="uvolni.to masáže" width="103" height="38"></div>
+        <p style="margin-top:1rem; color:rgba(228,220,204,.75); font-size:.92rem">Relaxační a&nbsp;sportovní masáže,
+          brazilská maderoterapie. Jeden terapeut, dost času.</p>
+      </div>
+      <div>
+        <h4>Masáže</h4>
+        <ul>
+          <li><a href="#sluzby" class="ul">Relaxační masáž</a></li>
+          <li><a href="#sluzby" class="ul">Sportovní masáž</a></li>
+          <li><a href="#sluzby" class="ul">Maderoterapie</a></li>
+          <li><a href="#kontakt" class="ul">Dárkový poukaz</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Informace</h4>
+        <ul>
+          <li><a href="#o-mne" class="ul">O mně</a></li>
+          <li><a href="#benefity" class="ul">Benefity</a></li>
+          <li><a href="#kontakt" class="ul">Kontakt</a></li>
+          <li><a href="#" class="ul">Obchodní podmínky &amp;&nbsp;GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Lukáš Václavek&nbsp;— IČO 19696884</span>
+      <span>Návrh: varianta C&nbsp;— „Antara“</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:[DOPLNIT]" class="btn btn-light btn-sm">Zavolat</a>
+  <a href="#rezervace" class="btn btn-sm">Rezervovat</a>
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":["HealthAndBeautyBusiness","LocalBusiness"],"@id":"https://uvolnitomasaze.cz/#studio","name":"uvolni.to — masáže","url":"https://uvolnitomasaze.cz/","description":"Masážní studio Lukáše Václavka. Relaxační masáže, sportovní masáže a brazilská maderoterapie.","image":"https://uvolnitomasaze.cz/assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg","logo":"https://uvolnitomasaze.cz/assets/logo/ODVOZENO-wordmark-barevne.png","priceRange":"[DOPLNIT]","currenciesAccepted":"CZK","paymentAccepted":"Hotově, převodem, Edenred, Benefit plus","telephone":"[DOPLNIT]","email":"[DOPLNIT]","founder":{"@type":"Person","name":"Lukáš Václavek"},"vatID":"[DOPLNIT]","taxID":"19696884","address":{"@type":"PostalAddress","streetAddress":"[DOPLNIT]","addressLocality":"[DOPLNIT]","postalCode":"[DOPLNIT]","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"[DOPLNIT]","longitude":"[DOPLNIT]"},"areaServed":{"@type":"City","name":"[DOPLNIT MĚSTO]"},"sameAs":["[DOPLNIT Google profil]","[DOPLNIT Facebook]","[DOPLNIT Instagram]","[DOPLNIT Reservio]"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"[DOPLNIT]","closes":"[DOPLNIT]"}],"makesOffer":[{"@type":"Offer","priceCurrency":"CZK","price":"[DOPLNIT]","url":"https://uvolnitomasaze.cz/masaz-relaxacni.html","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž"}},{"@type":"Offer","priceCurrency":"CZK","price":"[DOPLNIT]","url":"https://uvolnitomasaze.cz/masaz-sportovni.html","itemOffered":{"@type":"Service","name":"Sportovní masáž","serviceType":"Sportovní masáž"}},{"@type":"Offer","priceCurrency":"CZK","price":"[DOPLNIT]","url":"https://uvolnitomasaze.cz/masaz-maderoterapie.html","itemOffered":{"@type":"Service","name":"Brazilská maderoterapie","serviceType":"Brazilská maderoterapie"}}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Musí masáž bolet, aby zabrala?","acceptedAnswer":{"@type":"Answer","text":"Ne. Bolest je informace, ne cíl. Tlak nastavíme během prvních minut tak, aby byl na hraně příjemného, a kdykoli během masáže ho můžete nechat ubrat."}},{"@type":"Question","name":"Jak často má smysl chodit?","acceptedAnswer":{"@type":"Answer","text":"U sedavé práce a tuhnoucí šíje obvykle jednou za tři až čtyři týdny. U sportovní regenerace podle tréninkového cyklu."}},{"@type":"Question","name":"Můžu masáž zaplatit zaměstnaneckými benefity?","acceptedAnswer":{"@type":"Answer","text":"Ano. Přijímám Edenred a Benefit plus. Stačí to zmínit při rezervaci, platí se až na místě."}},{"@type":"Question","name":"Co si mám vzít s sebou?","acceptedAnswer":{"@type":"Answer","text":"Nic. Ručníky, prostěradlo i olej jsou ve studiu."}},{"@type":"Question","name":"Je maderoterapie vhodná pro každého?","acceptedAnswer":{"@type":"Answer","text":"Většinou ano, ale čerstvá poranění, křečové žíly v místě aplikace, těhotenství nebo onkologická léčba jsou důvod se předem poradit."}}]}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<script defer>
+window.addEventListener('load', function () {
+  var REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var head = document.getElementById('head');
+
+  /* podklad hlavičky — funguje i bez GSAP */
+  var solid = function () { head.classList.toggle('solid', window.scrollY > window.innerHeight * 0.75); };
+  solid();
+  window.addEventListener('scroll', solid, { passive: true });
+
+  if (REDUCE || !window.gsap || !window.ScrollTrigger) {
+    document.documentElement.classList.add('no-motion');
+    return;                       /* obsah zůstává plně čitelný bez animací */
+  }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── Lenis ── */
+  if (window.Lenis) {
+    var lenis = new Lenis({ duration: 1.15, smoothWheel: true, smoothTouch: false });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /* ═══ 1. Jméno v hero — písmena vyjíždějí zpod masky ═══
+     Preloader je pryč (blokoval první vykreslení ~2,25 s a jeho procenta byla
+     jen časová animace, ne skutečný postup načítání). Odkrytí písmen ale bylo
+     nejsilnější gesto varianty C, takže zůstává — jen běží rovnou v hero,
+     kde nic neblokuje a LCP se o něj neopozdí. */
+  /* fromTo, ne to: GSAP načte CSS translateY(115%) jako pixely a samotné
+     yPercent:0 by písmena nikam neposunulo — zůstala by schovaná pod maskou */
+  var chars = gsap.utils.toArray('#heroWord .ch');
+  gsap.timeline()
+    .fromTo(chars, { yPercent: 115, y: 0 },
+      { yPercent: 0, duration: 1.1, stagger: 0.045, ease: 'power3.out' })
+    .from('.hero-h1, .hero-sub, .hero-foot', { opacity: 0, y: 24, duration: 0.9, stagger: 0.12, ease: 'power2.out' }, '-=0.7');
+
+  /* ═══ 1b. Ukazatel postupu čtení ═══ */
+  var bar = document.getElementById('progBar');
+  if (bar) {
+    gsap.to(bar, {
+      scaleX: 1, ease: 'none',
+      scrollTrigger: { id: 'prog', start: 0, end: 'max', scrub: .3 }
+    });
+  }
+
+  /* ═══ 3. Parallax — jen transform, max 12 % ═══ */
+  gsap.utils.toArray('[data-par]').forEach(function (img, i) {
+    gsap.fromTo(img, { yPercent: -6 }, {
+      yPercent: 6, ease: 'none',
+      scrollTrigger: { id: 'par' + i, trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+    });
+  });
+  gsap.fromTo('#heroImg', { yPercent: 0, scale: 1.08 }, {
+    yPercent: 10, ease: 'none',
+    scrollTrigger: { id: 'heroimg', trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
+  });
+
+  /* ═══ 4. Odkrývání obsahu ═══ */
+  var revealEls = gsap.utils.toArray('[data-rv]')
+    .filter(function (el) { return el.getBoundingClientRect().top > window.innerHeight * 0.92; });
+  gsap.set(revealEls, { opacity: 0, y: 28 });
+  ScrollTrigger.batch(revealEls, {
+    start: 'top 92%', once: true,
+    onEnter: function (b) {
+      gsap.to(b, { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power2.out', clearProps: 'opacity,transform' });
+    }
+  });
+  /* pojistka: obsah nikdy nesmí zůstat neviditelný */
+  ScrollTrigger.addEventListener('scrollEnd', function () {
+    revealEls.forEach(function (el) {
+      if (getComputedStyle(el).opacity !== '1' && el.getBoundingClientRect().top < window.innerHeight) {
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.4, clearProps: 'opacity,transform' });
+      }
+    });
+  });
+
+  /* ═══ 5. Počítadla — jednorázově ═══ */
+  gsap.utils.toArray('[data-count]').forEach(function (el, i) {
+    var end = parseFloat(el.dataset.count), suf = el.dataset.suffix || '', o = { v: 0 };
+    gsap.to(o, {
+      v: end, duration: 1.6, ease: 'power2.out',
+      scrollTrigger: { id: 'count' + i, trigger: el, start: 'top 85%', once: true },
+      onUpdate: function () { el.textContent = Math.round(o.v).toLocaleString('cs-CZ') + suf; }
+    });
+  });
+
+  /* ═══ 6. PORTÁL — oblouk se rozevře přes celou obrazovku ═══
+     Jediná pinovaná sekce na webu (CLAUDE.md §3 pravidlo 5). Na dotyku a pod 900 px
+     se nezapíná vůbec — pin + dotyk dělá problémy a mobil dostane statický obrázek. */
+  gsap.matchMedia().add('(min-width: 900px) and (pointer: fine)', function () {
+    var stage = document.getElementById('portalStage');
+    var frame = document.getElementById('portalFrame');
+    var copy  = document.getElementById('portalCopy');
+    if (!stage || !frame) return;
+
+    /* kolik je potřeba zvětšit, aby oblouk pokryl viewport — dopočítá se při každém refreshi */
+    var target = function () {
+      var r = frame.getBoundingClientRect();
+      return Math.max(window.innerWidth / r.width, window.innerHeight / r.height) * 1.06;
+    };
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        id: 'portal', trigger: '.portal', start: 'top top', end: '+=160%',
+        pin: stage, scrub: 1, invalidateOnRefresh: true
+      }
+    });
+    tl.fromTo(frame, { scale: 1 }, { scale: target, ease: 'none', duration: 1 }, 0)
+      .fromTo(frame, { '--k': 1 }, { '--k': 0, ease: 'none', duration: .75 }, 0)
+      .fromTo(copy,  { opacity: 0, y: 20 }, { opacity: 1, y: 0, ease: 'power1.out', duration: .3 }, .55)
+      .to('.portal-cue', { opacity: 0, duration: .15 }, 0);
+
+    return function () {
+      gsap.set([frame, copy, '.portal-cue'], { clearProps: 'all' });
+    };
+  });
+
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>

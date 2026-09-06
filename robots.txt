@@ -1,0 +1,13 @@
+# uvolni.to — masáže
+#
+# POZOR: tohle je nastavení pro NÁHLED (GitHub Pages).
+# Zakazuje indexaci, aby se rozpracovaný web nepral ve vyhledávání
+# s ostrým webem klienta na uvolnitomasaze.cz.
+#
+# PŘED OSTRÝM SPUŠTĚNÍM na vlastní doméně přepnout na:
+#   User-agent: *
+#   Allow: /
+#   Sitemap: https://<doména>/sitemap.xml
+
+User-agent: *
+Disallow: /
