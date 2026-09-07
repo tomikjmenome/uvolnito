@@ -393,6 +393,10 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 .duo{display:grid; grid-template-columns:1fr 1fr; gap:clamp(.75rem,2vw,1.5rem); align-items:end}
 .duo .arch{aspect-ratio:3/4}
 .duo .arch:last-child{margin-bottom:clamp(1.5rem,5vw,3.5rem)}
+/* Na telefonu ta dvojice fotek jen odsouvala obsah — stejné záběry jsou
+   o kus níž u jednotlivých masáží. Od tabletu výš prostor je, tam zůstávají.
+   Musí to stát AŽ ZA výchozím pravidlem, jinak ho display:grid přebije. */
+@media(max-width:639px){.duo{display:none}}
 
 /* ═══════════ SLUŽBY ═══════════ */
 .svc{background:var(--c-cream)}
@@ -630,7 +634,11 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
   .tranq-grid .arch,.about-grid .arch{aspect-ratio:4/5; width:min(100%,22rem); margin-inline:auto}
 }
 @media(max-width:639px){
-  .tranq-grid .arch,.about-grid .arch{width:min(100%,19rem)}
+  /* Přesně na šířku jedné karty z dvousloupcové nabídky masáží — stejná mezera,
+     stejný poměr, takže obrázky po celé stránce drží jednu velikost. */
+  .tranq-grid .arch,.about-grid .arch{
+    width:calc((100% - clamp(.8rem,3vw,1.4rem)) / 2); margin-inline:0;
+  }
 }
 .about h2{font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch}
 .sig{margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(48,79,71,.18); font-size:var(--fs-small)}
@@ -750,14 +758,31 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
   border:1px solid var(--c-sand); border-radius:var(--radius);
   padding:clamp(1.5rem,3.5vw,2.4rem); background:var(--c-white);
 }
-@media(min-width:760px){.vizitka{grid-template-columns:auto 1fr auto; gap:2rem}}
-.vizitka-foto{display:block; width:72px; height:96px; overflow:hidden;
-  border-radius:var(--arch); background:var(--c-forest-dk); flex:none}
+/* Na počítači vizitka nedává smysl: .vcf soubor si nikdo do desktopových
+   kontaktů netahá a kontakt je o kousek výš celý vypsaný. Zůstává jen tam,
+   kde má smysl — na telefonu, kde klepnutí rovnou otevře „přidat kontakt“. */
+@media(min-width:760px){.vizitka{display:none}}
+
+/* Mobilní rozvržení: fotka vlevo přes dva řádky, u ní nadpis a jméno,
+   popis přes celou šířku pod tím a tlačítko na celou šířku dole.
+   Dřív to byl jeden sloupec, ve kterém fotka 72×96 stála osamoceně nad textem
+   a působila jako omylem vložený obrázek. display:contents na .vizitka-txt
+   pustí nadpis, jméno i popis přímo do mřížky karty, takže je lze rozmístit
+   jednotlivě bez zásahu do HTML. */
+.vizitka{grid-template-columns:auto 1fr; gap:.2rem 1.1rem; align-items:center}
+.vizitka-txt{display:contents}
+.vizitka-foto{display:block; grid-row:1/3; align-self:start; width:78px; height:104px;
+  overflow:hidden; border-radius:var(--arch); background:var(--c-forest-dk)}
+/* Fotka má stejný poměr 3:4 jako rámeček, takže cover nic neořezává —
+   výřez je hotový už v souboru a hlava se do něj vejde celá. */
 .vizitka-foto img{width:100%; height:100%; object-fit:cover}
-.vizitka-txt b{display:block; font-family:var(--font-display); font-weight:400;
-  font-size:clamp(1.15rem,2vw,1.45rem); margin:.5rem 0 .4rem}
-.vizitka-txt span{display:block; font-size:.95rem; color:var(--c-ink-soft); max-width:46ch}
-.vizitka .btn{justify-self:start; white-space:nowrap}
+.vizitka-txt .label{grid-column:2; align-self:end; margin:0}
+.vizitka-txt b{grid-column:2; align-self:start; display:block;
+  font-family:var(--font-display); font-weight:400; font-size:1.2rem; margin:.2rem 0 0}
+.vizitka-txt span{grid-column:1/-1; display:block; margin-top:1rem;
+  font-size:.92rem; line-height:1.5; color:var(--c-ink-soft)}
+.vizitka .btn{grid-column:1/-1; width:100%; justify-content:center;
+  margin-top:1.2rem; white-space:nowrap}
 .embed-note a{color:var(--c-forest)}
 
 /* ═══════════ PATIČKA ═══════════ */
@@ -1016,7 +1041,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
         z&nbsp;kanceláře, z&nbsp;tréninku, ze spánku na špatném polštáři.</p>
       <p data-rv>Nemám velký salon ani tým masérů. Jsem tu jen já, jedno lehátko a&nbsp;dost času na&nbsp;to,
         abychom napětí opravdu našli a&nbsp;rozebrali&nbsp;— ne ho jen přejeli.</p>
-      <p data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznat Lukáše</a></p>
+      <p data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznej mě</a></p>
     </div>
     <div class="duo">
       <div class="arch" data-rv><picture>
@@ -1487,13 +1512,13 @@ html:not(.js) .progress,.no-motion .progress{display:none}
     <div class="vizitka" data-rv>
       <span class="vizitka-foto">
         <picture>
-          <source type="image/webp" srcset="assets/foto/opt/lukas-portret-200.webp 200w, assets/foto/opt/lukas-portret-400.webp 400w" sizes="72px">
+          <source type="image/webp" srcset="assets/foto/opt/lukas-portret-200.webp 200w, assets/foto/opt/lukas-portret-400.webp 400w" sizes="78px">
           <img src="assets/foto/opt/lukas-portret-400.jpg" width="400" height="534" alt="Lukáš Václavek" loading="lazy">
         </picture>
       </span>
       <div class="vizitka-txt">
         <p class="label">Ulož si mě</p>
-        <b>Lukáš Václavek — uvolni.to</b>
+        <b>Lukáš Václavek</b>
         <span>Telefon, e-mail, adresa i&nbsp;otevírací doba naráz do&nbsp;kontaktů. Až tě příště chytnou záda,
           nebudeš to hledat.</span>
       </div>
