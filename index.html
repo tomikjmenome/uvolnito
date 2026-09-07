@@ -331,11 +331,20 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
      proto to bylo vidět jen na mobilu.
      Spodní rámeček v barvě výplně tu skulinu přebarví, ať vznikne kdekoli,
      a záporný okraj o stejnou výšku ho schová pod následující sekci. */
-  border-bottom:2px solid currentColor; margin-bottom:-2px}
-.arch-div.from-cream{background:var(--c-cream)}
-.arch-div.from-sand{background:var(--c-sand-lt)}
-.arch-div.from-forest{background:var(--c-forest)}
-.arch-div.from-forest-dk{background:var(--c-forest-dk)}
+  border-bottom:2px solid currentColor; margin-bottom:-2px;
+  /* Spodní rámeček sám nestačil: <svg> je nahrazený prvek a rámeček se na něm
+     v některých prohlížečích nevykreslí. Zbylá čára byla šedá — směs tmavého
+     PODKLADU <svg> a krémové vlny, jak prohlížeč vyhladil spodní hranu křivky.
+     Proto podklad pod vlnou přebarvíme na barvu vlny: křivka od 70 % výšky dolů
+     vyplňuje celou šířku, takže gradient od 72 % není vidět, ale vyhlazená hrana
+     už nemá co prozradit — míchá se krémová s krémovou. */
+  background-image:linear-gradient(to bottom, transparent 0%, transparent 72%, currentColor 72%, currentColor 100%)}
+/* background-COLOR, ne zkratka background: ta by shodila gradient nastavený
+   výš (podklad pod vlnou musí mít barvu vlny, jinak prosvítá šedá hrana). */
+.arch-div.from-cream{background-color:var(--c-cream)}
+.arch-div.from-sand{background-color:var(--c-sand-lt)}
+.arch-div.from-forest{background-color:var(--c-forest)}
+.arch-div.from-forest-dk{background-color:var(--c-forest-dk)}
 .arch-div.up{margin-top:-2px}
 
 /* ═══════════ OBLOUKOVÉ FOTKY — 9:16 podklady sedí přesně ═══════════ */
@@ -876,6 +885,11 @@ footer.site a:hover{color:var(--c-white)}
       url("assets/foto/opt/2026-03-08-at-17-56-21-1066.webp") type("image/webp"),
       url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg") type("image/jpeg"));
     opacity:var(--proces-foto, .18);
+    /* Bez masky fotka končila ostrým řezem přesně v místě vlnky. Maska ji
+       nahoře i dole rozpustí do ploché barvy; dole delší doběh, protože právě
+       tam ten řez byl vidět. */
+    -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 20%, #000 58%, transparent 97%);
+            mask-image:linear-gradient(to bottom, transparent 0, #000 20%, #000 58%, transparent 97%);
   }
   /* Text musí ležet NAD podkladem. Bez tohohle by ho absolutně umístěné
      ::before překrylo — pseudoprvek se kreslí až po netaženém obsahu. */
