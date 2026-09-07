@@ -563,10 +563,14 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
    Čísla stála na tmavém podkladu uvnitř sekce „Studio“ a nikdo je nepřečetl.
    Bílá je na webu jinak jen uvnitř rámečků, takže pruh sám o sobě stačí jako
    předěl — nepotřebuje ani linku, ani nadpis. */
-.stats{background:var(--c-cream); padding-block:clamp(3.5rem,8vh,6rem)}
+/* Horní odsazení je nulové schválně. Pruh má stejnou krémovou jako „O mně“
+   nad ním, takže se obojí čte jako jeden blok — a sečtené spodní odsazení
+   sekce (108 px) s horním odsazením pruhu (72 px) a linkou (54 px) dělalo mezi
+   podpisem a prvním číslem skoro 290 px prázdna. Odstup teď nese jen linka. */
+.stats{background:var(--c-cream); padding-block:0 clamp(3.5rem,8vh,6rem)}
 /* Pruh je krémový stejně jako sekce nad ním, takže potřebuje vlastní horní linku —
    jinak by čísla vypadala jako poslední odstavec „O mně“. */
-.stats .nums{border-top:1px solid rgba(48,79,71,.14); padding-top:clamp(2.5rem,6vh,4rem)}
+.stats .nums{border-top:1px solid rgba(48,79,71,.14); padding-top:clamp(2rem,5vh,3rem)}
 .nums{display:grid; grid-template-columns:repeat(2,1fr); gap:2.5rem 1.5rem; text-align:center}
 @media(min-width:860px){.nums{grid-template-columns:repeat(4,1fr)}}
 /* Uvnitř bílého pruhu se barvy obracejí — původní krémová byla na bílé neviditelná. */
@@ -593,6 +597,9 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 .num span{display:block; font-size:var(--fs-small); color:rgba(228,220,204,.86); margin-top:.6rem}
 
 /* ═══════════ O MNĚ ═══════════ */
+/* Sekce končí u čísel, ne u prázdna — plné odsazení sekce zdola tu nedává
+   smysl, když hned pod ní pokračuje stejně krémový pruh se statistikami. */
+.about{padding-bottom:clamp(2.5rem,6vh,4.5rem)}
 .about-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
 /* Portrét v poměru 3:4 přes .8fr celé šířky vycházel přes 800 px vysoký a sekce
    se nevešla na jednu obrazovku. Sloupec proto dostane pevných 24 rem (= 512 px
