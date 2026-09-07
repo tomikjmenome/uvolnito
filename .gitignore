@@ -18,3 +18,7 @@ dist/
 # Lokální https náhled (obsahuje soukromý klíč certifikátu)
 _nahled-https/
 *.pem
+
+# Originály od klienta (neupravené, plné rozlišení) — repo je veřejné,
+# do webu jdou jen odvozené oříznuté verze v assets/foto/opt/.
+assets/foto-od-klienta/
