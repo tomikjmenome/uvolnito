@@ -789,7 +789,32 @@ footer.site a:hover{color:var(--c-white)}
 /* ═══════════ PRŮBĚH — pinovaná sekce s dokreslovaným obloukem ═══════════ */
 /* Pinovaná sekce nesmí být vyšší než viewport, jinak jí spodek uteče mimo obrazovku.
    Vlastní padding sekce proto jde pryč a odsazení se řeší uvnitř mřížky. */
-.proces{overflow:clip; padding-block:0}
+.proces{overflow:clip; padding-block:0; position:relative; isolation:isolate}
+
+/* ── Foto studia jako podklad ────────────────────────────────────
+   Sekce byla jednolitá tmavá plocha mezi dvěma fotkami. Snímek pod ní ji
+   prohřeje, ale musí zůstat texturou, ne obsahem — proto nízké krytí.
+   Ladí se jedním číslem: --proces-foto. Nahoru bych šel maximálně na .28,
+   výš už fotka přebíjí text a čísla kroků.
+
+   Je to schválně ten samý snímek jako v sekci „Vejdi do klidu“ nad ní:
+   prohlížeč ho v tu chvíli má načtený, takže podklad nestojí ani jeden
+   request navíc. Výměna za jiný = přepsat cestu na dvou řádcích níž.
+
+   Kontrast je pohlídaný: i na nejsvětlejším místě fotky vychází krémový
+   text proti podkladu zhruba 7,4:1, tedy s rezervou nad AA (4,5:1). */
+.proces::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-position:center; background-size:cover; background-repeat:no-repeat;
+  background-image:url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg");
+  background-image:image-set(
+    url("assets/foto/opt/2026-03-08-at-17-56-21-1066.webp") type("image/webp"),
+    url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg") type("image/jpeg"));
+  opacity:var(--proces-foto, .18);
+}
+/* Text musí ležet NAD podkladem. Bez tohohle by ho absolutně umístěné ::before
+   překrylo — pseudoprvek se vykresluje až po netaženém obsahu. */
+.proces > .wide{position:relative; z-index:1}
 .proces-grid{
   display:grid; gap:var(--space-block); align-items:center; align-content:center;
   min-height:100svh; padding-block:clamp(3rem,8vh,6rem);
