@@ -402,9 +402,12 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
      obou sekcí je stavěné na to, že vedle textu stojí sloupec s obrázky.
      Na telefonu tam ale není nic, tak se obě odsazení zkracují.
      Tlačítko na střed — po zmizení fotek stálo vlevo v prázdné ploše. */
-  .intro{padding-bottom:clamp(2.5rem,6vh,3.5rem)}
-  #sluzby{padding-top:clamp(2.5rem,6vh,3.5rem)}
-  .intro-cta{text-align:center}
+  .intro{padding-bottom:1.25rem}
+  #sluzby{padding-top:2rem}
+  /* Odstavec kolem tlačítka má vlastní spodní okraj, který se k odsazení
+     sekce přičítal — pryč s ním, jinak z toho pod tlačítkem zase naroste
+     118 px prázdna. Tlačítko na střed: po zmizení fotek stálo vlevo. */
+  .intro-cta{text-align:center; margin-bottom:0}
 }
 
 /* ═══════════ SLUŽBY ═══════════ */
