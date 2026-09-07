@@ -319,19 +319,60 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
      výplň (style="fill:…")  = barva sekce POD předělem
      pozadí (třída .from-…)  = barva sekce NAD předělem
    Když jsou obě stejné, z oblouku zbude plný obdélník a vypadá to jako rovná čára. */
-.arch-div{display:block; width:100%; height:clamp(48px,7vw,110px); position:relative; z-index:3; margin-bottom:-1px}
+/* Barva vlny jde přes color, ne přes fill: díky tomu ji může použít i rámeček
+   níž. Jednotlivé <svg> si ji nastavují inline (style="color:var(--c-…)"). */
+.arch-div{display:block; width:100%; height:clamp(48px,7vw,110px); position:relative; z-index:3;
+  fill:currentColor;
+  /* Na telefonu se mezi vlnou a stejně barevnou sekcí pod ní objevovala světlá
+     vlasová čára. Displeje mají neceločíselný poměr pixelů (2,625 / 2,75 / 3×),
+     takže spodní hrana <svg> padne doprostřed fyzického pixelu a prosvitne skrz
+     ni podklad samotného <svg> — a ten má barvu sekce NAD vlnou. Na tmavém
+     pozadí to vypadá jako bílý pruh. Na desktopu s 1× nebo 2× to nenastane,
+     proto to bylo vidět jen na mobilu.
+     Spodní rámeček v barvě výplně tu skulinu přebarví, ať vznikne kdekoli,
+     a záporný okraj o stejnou výšku ho schová pod následující sekci. */
+  border-bottom:2px solid currentColor; margin-bottom:-2px}
 .arch-div.from-cream{background:var(--c-cream)}
 .arch-div.from-sand{background:var(--c-sand-lt)}
 .arch-div.from-forest{background:var(--c-forest)}
 .arch-div.from-forest-dk{background:var(--c-forest-dk)}
-.arch-div.up{margin-top:-1px; margin-bottom:0}
+.arch-div.up{margin-top:-2px}
 
 /* ═══════════ OBLOUKOVÉ FOTKY — 9:16 podklady sedí přesně ═══════════ */
-.arch{border-radius:var(--arch); overflow:hidden; position:relative}
+.arch{border-radius:var(--arch); overflow:hidden; position:relative; background:var(--c-forest-dk)}
+
+/* ── Piktogram místo prázdného místa, dokud se fotka nenačte ─────
+   Fotky jsou loading="lazy", takže než se stáhnou, zely oblouky prázdnotou.
+   Teď v nich dýchá značkový piktogram — ne spinner, ale klidné houpnutí,
+   které sedí k tónu webu.
+
+   Proč background-image a ne <img>: piktogram má být pod fotkou a jen v CSS,
+   aby nepřibyl další prvek do DOMu ani do přístupnostního stromu. Fotka nad
+   ním má z-index:1, jinak by ji absolutně umístěný pseudoprvek překryl.
+
+   Třídu has-foto přidá JS, jakmile obrázek doopravdy dorazí — pak pseudoprvek
+   i s animací mizí, ať pod hotovou fotkou nic zbytečně netiká. */
+.arch::before,.acc-arch::before{
+  content:""; position:absolute; z-index:0; left:50%; top:50%;
+  width:clamp(2.4rem,22%,4.5rem); aspect-ratio:1;
+  background:url("assets/logo/ODVOZENO-piktogram.svg") center/contain no-repeat;
+  opacity:.42; will-change:transform;
+  animation:pikto-dech 1.9s var(--ease) infinite;
+}
+.arch.has-foto::before,.acc-arch.has-foto::before{content:none}
+.arch img,.acc-arch img{position:relative; z-index:1}
+@keyframes pikto-dech{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%    {transform:translate(-50%,-64%) scale(1.05)}
+}
+/* Bez pohybu piktogram jen tiše stojí — pořád je vidět, že se něco načítá. */
+@media(prefers-reduced-motion:reduce){
+  .arch::before,.acc-arch::before{animation:none}
+}
 /* Fotka musí mít rezervu na OBĚ strany. Původní height:112% zarovnaná nahoru
    znamenala, že při parallaxu yPercent:+6 vznikla nahoře pod obloukem mezera
    a fotka vypadala uříznutě. Posunutím o -7 % je krytá v celém rozsahu. */
-.arch img{position:absolute; inset:-7% 0 auto 0; width:100%; height:114%; object-fit:cover; will-change:transform}
+.arch img{position:absolute; inset:-7% 0 auto 0; width:100%; height:114%; object-fit:cover; will-change:transform; z-index:1}
 .arch::after{content:""; position:absolute; inset:0; border-radius:var(--arch);
   border:1px solid rgba(203,187,160,.55); pointer-events:none}
 
@@ -561,6 +602,20 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 @media(min-width:900px){.about-grid{grid-template-columns:24rem 1fr}}
 .about-grid .arch{aspect-ratio:3/4}
 .about-grid .arch img{object-position:center 20%}
+
+/* Na jednom sloupci roztáhl poměr 3:4 fotku na celou šířku displeje a vyrobil
+   z ní skoro 500 px vysoký blok — půl obrazovky na jeden obrázek. Krotší poměr
+   a strop šířky ji vrátí do role ilustrace; na střed proto, aby to nevypadalo
+   jako nedotažený dvousloupec. */
+@media(max-width:899px){
+  /* width:min() a ne max-width: .arch nemá vlastní obsah (fotka uvnitř je
+     absolutně umístěná), takže jakmile ho margin-inline:auto vytáhne ze
+     stretch režimu mřížky, smrskne se na nulu i s celou fotkou. */
+  .tranq-grid .arch,.about-grid .arch{aspect-ratio:4/5; width:min(100%,22rem); margin-inline:auto}
+}
+@media(max-width:639px){
+  .tranq-grid .arch,.about-grid .arch{width:min(100%,19rem)}
+}
 .about h2{font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch}
 .sig{margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(48,79,71,.18); font-size:var(--fs-small)}
 .sig b{display:block; font-family:var(--font-display); font-weight:400; font-size:1.1rem}
@@ -791,11 +846,13 @@ footer.site a:hover{color:var(--c-white)}
    Vlastní padding sekce proto jde pryč a odsazení se řeší uvnitř mřížky. */
 .proces{overflow:clip; padding-block:0; position:relative; isolation:isolate}
 
-/* ── Foto studia jako podklad ────────────────────────────────────
-   Sekce byla jednolitá tmavá plocha mezi dvěma fotkami. Snímek pod ní ji
-   prohřeje, ale musí zůstat texturou, ne obsahem — proto nízké krytí.
-   Ladí se jedním číslem: --proces-foto. Nahoru bych šel maximálně na .28,
-   výš už fotka přebíjí text a čísla kroků.
+/* ── Foto studia jako podklad — JEN TELEFON ──────────────────────
+   Na širokém displeji je sekce pinovaná a fotka pod dokreslovaným obloukem
+   rušila; tam zůstává čistá tmavá plocha jako dřív. Na telefonu je z ní
+   naopak dlouhý prázdný pás, který snímek prohřeje.
+
+   Ladí se dvěma věcmi: --proces-foto (krytí, nad .28 už fotka přebíjí text)
+   a hranicí 639 px níž — zvednout na 899 px, ať to platí i pro tablety.
 
    Je to schválně ten samý snímek jako v sekci „Vejdi do klidu“ nad ní:
    prohlížeč ho v tu chvíli má načtený, takže podklad nestojí ani jeden
@@ -803,18 +860,20 @@ footer.site a:hover{color:var(--c-white)}
 
    Kontrast je pohlídaný: i na nejsvětlejším místě fotky vychází krémový
    text proti podkladu zhruba 7,4:1, tedy s rezervou nad AA (4,5:1). */
-.proces::before{
-  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background-position:center; background-size:cover; background-repeat:no-repeat;
-  background-image:url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg");
-  background-image:image-set(
-    url("assets/foto/opt/2026-03-08-at-17-56-21-1066.webp") type("image/webp"),
-    url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg") type("image/jpeg"));
-  opacity:var(--proces-foto, .18);
+@media(max-width:639px){
+  .proces::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background-position:center; background-size:cover; background-repeat:no-repeat;
+    background-image:url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg");
+    background-image:image-set(
+      url("assets/foto/opt/2026-03-08-at-17-56-21-1066.webp") type("image/webp"),
+      url("assets/foto/opt/2026-03-08-at-17-56-21-1066.jpg") type("image/jpeg"));
+    opacity:var(--proces-foto, .18);
+  }
+  /* Text musí ležet NAD podkladem. Bez tohohle by ho absolutně umístěné
+     ::before překrylo — pseudoprvek se kreslí až po netaženém obsahu. */
+  .proces > .wide{position:relative; z-index:1}
 }
-/* Text musí ležet NAD podkladem. Bez tohohle by ho absolutně umístěné ::before
-   překrylo — pseudoprvek se vykresluje až po netaženém obsahu. */
-.proces > .wide{position:relative; z-index:1}
 .proces-grid{
   display:grid; gap:var(--space-block); align-items:center; align-content:center;
   min-height:100svh; padding-block:clamp(3rem,8vh,6rem);
@@ -922,7 +981,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
   </div>
 </section>
 
-<svg class="arch-div from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+<svg class="arch-div from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-cream)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1130,7 +1189,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
   </div>
 </section>
 
-<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest)">
+<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-forest)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1182,7 +1241,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
   </div>
 </section>
 
-<svg class="arch-div up from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+<svg class="arch-div up from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-cream)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1235,7 +1294,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 })();
 </script>
 
-<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest-dk)">
+<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-forest-dk)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1291,7 +1350,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
   </div>
 </section>
 
-<svg class="arch-div up from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-cream)">
+<svg class="arch-div up from-forest-dk" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-cream)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1438,7 +1497,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 
 </main>
 
-<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest-dk)">
+<svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="color:var(--c-forest-dk)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
 </svg>
 
@@ -1580,6 +1639,21 @@ window.addEventListener('load', function () {
     fr.hidden = false;
     fr.src = fr.dataset.src;
   })();
+
+  /* ═══ Piktogram mizí, jakmile fotka dorazí ═══
+     Musí to být tady, nad odbočkou pro reduced-motion a chybějící GSAP —
+     jinak by u lidí bez animací zůstal piktogram viset i pod hotovou fotkou.
+     complete && naturalWidth ošetřuje obrázky z cache, které se načetly dřív,
+     než se sem kód vůbec dostal; error taky odbavíme, ať se u rozbité fotky
+     neanimuje donekonečna prázdný oblouk. */
+  document.querySelectorAll('.arch img, .acc-arch img').forEach(function (img) {
+    var box = img.closest('.arch, .acc-arch');
+    if (!box) return;
+    var done = function () { box.classList.add('has-foto'); };
+    if (img.complete && img.naturalWidth) return done();
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
 
   /* podklad hlavičky — funguje i bez GSAP */
   var solid = function () { head.classList.toggle('solid', window.scrollY > window.innerHeight * 0.75); };
