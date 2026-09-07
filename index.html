@@ -373,9 +373,6 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
   display:block; position:relative; overflow:hidden; border-radius:var(--arch);
   aspect-ratio:3/4; background:var(--c-forest-dk);
 }
-/* Na telefonu je karta přes celou šířku, takže poměr 3:4 dělal z fotky přes
-   500 px vysoký blok a na obrazovku se vešla sotva jedna karta. */
-@media(max-width:639px){.acc-arch{aspect-ratio:1/1}}
 .acc-arch img{width:100%; height:100%; object-fit:cover; transition:transform .9s var(--ease)}
 .acc-arch::after{content:""; position:absolute; inset:0; border-radius:inherit;
   border:1px solid rgba(203,187,160,.55); pointer-events:none; z-index:3}
@@ -397,6 +394,42 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 .acc-go{display:inline-flex; align-items:center; gap:.5rem; margin-top:.9rem;
   font-size:.7rem; text-transform:uppercase; letter-spacing:.14em; color:var(--c-forest)}
 .acc-go::after{content:"\2192"; transition:transform .4s var(--ease)}
+
+/* ── Do 900 px: dvě karty na řádek ───────────────────────────────
+   Šest karet pod sebou přes celou šířku znamenalo na telefonu skoro pět tisíc
+   pixelů scrollování jen za nabídkou. Ve dvou sloupcích je z toho polovina
+   a celá nabídka se dá přehlédnout na dva tahy palcem.
+
+   .acc{display:contents} je tu důležité: šest karet je v HTML ve dvou mřížkách
+   po třech (kvůli vodorovnému přejezdu na desktopu). Kdyby obě zůstaly
+   samostatné mřížky, každá by ve dvou sloupcích vyrobila osamocenou třetí
+   kartu — dvakrát ragged řádek. Takhle mřížku nese .acc-track a všech šest
+   karet do ní padá jako do jedné. */
+@media(max-width:899px){
+  .acc-track{grid-template-columns:repeat(2,1fr); gap:clamp(1.1rem,3.5vw,2rem) clamp(.8rem,3vw,1.4rem)}
+  .acc{display:contents}
+  .acc-arch{aspect-ratio:4/5}
+  .acc-body{padding-top:.85rem}
+  .acc-n{font-size:.62rem; letter-spacing:.12em; margin-bottom:.3rem}
+  .acc-body h3{font-size:1.08rem; margin-bottom:.35rem; text-wrap:balance}
+  .acc-lead{font-size:.84rem; line-height:1.45; margin:0 0 .7rem; max-width:none}
+  .acc-meta{padding-top:.7rem}
+  .acc-go{margin-top:.6rem; font-size:.62rem; letter-spacing:.1em; gap:.35rem}
+}
+/* Pod 640 px už se cena a délka vedle sebe na jeden řádek nevejdou a rozpadaly
+   se doprostřed. Výčet délek s cenami je navíc zbytečný — souhrn „od 990 Kč /
+   60 / 90 / 120 min“ pod ním říká totéž a detail je na jedno klepnutí. */
+@media(max-width:639px){
+  .acc-deep{display:none}
+  .acc-meta{flex-direction:column; align-items:flex-start; gap:.1rem}
+  .acc-meta b{font-size:1.05rem}
+}
+/* Nejužší telefony (do 359 px) na dva sloupce nemají šířku — text by se lámal
+   po slabikách. Tam zůstává jedna karta na řádek. */
+@media(max-width:359px){
+  .acc-track{grid-template-columns:1fr}
+  .acc-arch{aspect-ratio:1/1}
+}
 
 /* Tři sloupce NEsmí viset na hoveru — tablet bez myši by jinak dostal
    tři oblouky přes celou šířku pod sebou. */
