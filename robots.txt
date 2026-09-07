@@ -1,13 +1,18 @@
 # uvolni.to — masáže
 #
-# POZOR: tohle je nastavení pro NÁHLED (GitHub Pages).
-# Zakazuje indexaci, aby se rozpracovaný web nepral ve vyhledávání
-# s ostrým webem klienta na uvolnitomasaze.cz.
+# POZOR: tohle je nastavení pro NÁHLED.
 #
-# PŘED OSTRÝM SPUŠTĚNÍM na vlastní doméně přepnout na:
-#   User-agent: *
-#   Allow: /
-#   Sitemap: https://<doména>/sitemap.xml
+# Náhled běží na GitHub Pages v podadresáři (tomikjmenome.github.io/uvolnito/).
+# Roboti čtou robots.txt jen z kořene domény, takže TENHLE soubor se na náhledu
+# vůbec neuplatní — indexaci tam blokuje <meta name="robots" content="noindex">
+# v index.html. Bez něj by pravidla níž byla k ničemu.
+#
+# PŘED OSTRÝM SPUŠTĚNÍM na vlastní doméně:
+#   1) smazat meta robots z index.html
+#   2) tenhle soubor přepnout na:
+#        User-agent: *
+#        Allow: /
+#        Sitemap: https://<doména>/sitemap.xml
 
 User-agent: *
 Disallow: /

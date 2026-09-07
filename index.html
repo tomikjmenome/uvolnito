@@ -7,8 +7,16 @@
 <meta name="description" content="Masážní studio uvolni.to v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál. Jeden terapeut, jeden klient, dost času.">
 <link rel="canonical" href="https://uvolnitomasaze.cz/">
 
-<!-- Favicon: v assets/logo/ NENÍ piktogram.svg (varianta C na něj mířila a padalo to na 404).
-     Uvolnito_ikonavagina.svg je jediná čistá vektorová cesta bez živého textu. -->
+<!-- NÁHLED — NEINDEXOVAT.
+     Web běží na GitHub Pages jako projektový web (tomikjmenome.github.io/uvolnito/).
+     U projektového webu roboti čtou robots.txt z KOŘENE domény, ne z podadresáře,
+     takže náš /uvolnito/robots.txt se vůbec nepoužije — jediné, co indexaci
+     spolehlivě zastaví, je tenhle meta tag. Před ostrým spuštěním na vlastní
+     doméně ho smazat (a zároveň přepnout robots.txt na Allow). -->
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon: ODVOZENO-favicon.svg je odvozený z ikony ve značce — jediná čistá
+     vektorová cesta bez živého textu, takže se nerozpadne v malých velikostech. -->
 <link rel="icon" href="assets/logo/ODVOZENO-favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/logo/ODVOZENO-icon-32.png" sizes="32x32" type="image/png">
 <!-- 192 px = násobek 48: Google Search bere jen takové rozměry, jinak piktogram u výsledku vůbec neukáže. -->
@@ -477,8 +485,27 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 .step p{margin:0; font-size:.95rem; max-width:46ch}
 
 /* ═══════════ ČÍSLA ═══════════ */
-.nums{display:grid; grid-template-columns:repeat(2,1fr); gap:2.5rem 1.5rem; margin-top:var(--space-block); text-align:center}
+/* ═══════════ ČÍSLA — vlastní bílý pruh ═══════════
+   Čísla stála na tmavém podkladu uvnitř sekce „Studio“ a nikdo je nepřečetl.
+   Bílá je na webu jinak jen uvnitř rámečků, takže pruh sám o sobě stačí jako
+   předěl — nepotřebuje ani linku, ani nadpis. */
+.stats{background:var(--c-cream); padding-block:clamp(3.5rem,8vh,6rem)}
+/* Pruh je krémový stejně jako sekce nad ním, takže potřebuje vlastní horní linku —
+   jinak by čísla vypadala jako poslední odstavec „O mně“. */
+.stats .nums{border-top:1px solid rgba(48,79,71,.14); padding-top:clamp(2.5rem,6vh,4rem)}
+.nums{display:grid; grid-template-columns:repeat(2,1fr); gap:2.5rem 1.5rem; text-align:center}
 @media(min-width:860px){.nums{grid-template-columns:repeat(4,1fr)}}
+/* Uvnitř bílého pruhu se barvy obracejí — původní krémová byla na bílé neviditelná. */
+.stats .num b{color:var(--c-forest)}
+/* Poměr 1:1 se nedá odpočítat, tak přilétá po znacích — aby měl stejný nástup
+   jako tři počítadla vedle. Bez JS i s vypnutým pohybem je prostě hned celý. */
+.num-ratio i{display:inline-block; font-style:normal}
+.stats .num span{color:var(--c-ink-soft)}
+/* Svislé vlasové linky mezi čísly, ať pruh drží pohromadě. Na mobilu jsou dva
+   sloupce, takže linka patří jen mezi ně, ne před první číslo v řádku. */
+@media(min-width:860px){
+  .stats .num + .num{border-left:1px solid rgba(48,79,71,.14)}
+}
 /* Zázemí studia — sprcha a čaj jsou skutečný rozdíl proti konkurenci
    a do teď nebyly na webu nikde zmíněné. */
 .zazemi{list-style:none; margin:2rem 0 0; padding:0; display:grid; gap:.7rem; font-size:.95rem}
@@ -517,7 +544,7 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 .score b{font-family:var(--font-display); font-weight:200; font-size:clamp(3rem,6vw,4.6rem);
   line-height:.9; color:var(--c-cream); letter-spacing:-.03em}
 .score .of{font-family:var(--font-display); font-size:1.1rem; color:var(--c-sand)}
-.score .src{font-size:.72rem; text-transform:uppercase; letter-spacing:.16em; color:rgba(228,220,204,.7)}
+.score .src{font-size:.72rem; text-transform:uppercase; letter-spacing:.16em; color:rgba(228,220,204,.86)}
 .score .stars{color:var(--c-sand); letter-spacing:.22em; font-size:.85rem; display:block; margin-bottom:.35rem}
 
 /* Reference — bez karet. Tři orámované boxy dělaly z reference „widget“;
@@ -568,25 +595,25 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
   font-size:clamp(1rem,1.25vw,1.12rem); line-height:1.5; color:rgba(247,243,236,.92);
   margin:0 0 1.2rem}
 .rev cite,.rev-lead cite{font-style:normal; display:flex; align-items:center; gap:.7rem; flex-wrap:wrap;
-  font-size:.76rem; color:rgba(228,220,204,.7)}
+  font-size:.76rem; color:rgba(228,220,204,.86)}
 .rev .badge,.rev-lead .badge{font-size:.6rem; text-transform:uppercase; letter-spacing:.14em;
   color:var(--c-sand); opacity:.9}
 /* volné místo na třetí referenci — ať je vidět, že se sem doplňuje z Google profilu */
 .rev-empty p{opacity:.5}
 .revs-note{margin-top:clamp(2rem,5vh,3rem); font-size:var(--fs-small);
-  color:rgba(228,220,204,.6); max-width:62ch}
+  color:rgba(228,220,204,.86); max-width:62ch}
 .revs-note a{color:var(--c-sand); border-bottom:1px solid rgba(203,187,160,.4)}
 
-/* ═══════════ BENEFITY ═══════════ */
-.benef-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:center}
+/* ═══════════ BENEFITY ═══════════
+   Krátká zpráva na jedno nadechnutí, ne sekce s obsahem — proto na střed.
+   Levé zarovnání v půlce mřížky vypadalo jako nedokončený dvousloupec,
+   protože druhý sloupec zůstal prázdný. */
+.benef{text-align:center}
+.benef h2{font-size:var(--fs-h2); margin-inline:auto; max-width:16ch}
+.benef p{margin-inline:auto; max-width:52ch}
 
-.chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.8rem}
+.chips{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.8rem; justify-content:center}
 .chip{border:1px solid rgba(48,79,71,.2); border-radius:999px; padding:.55rem 1.2rem; font-size:.82rem; letter-spacing:.04em}
-
-/* ═══════════ POUKAZ ═══════════ */
-.voucher{text-align:center}
-.voucher h2{font-size:var(--fs-h2); margin-inline:auto; max-width:16ch}
-.voucher p{margin-inline:auto}
 
 /* ═══════════ KONTAKT — bez animace ═══════════ */
 .contact-grid{display:grid; gap:clamp(2rem,5vw,4rem); margin-top:var(--space-block)}
@@ -645,6 +672,25 @@ footer.site a:hover{color:var(--c-white)}
 .foot-mark{display:block; line-height:0; margin-bottom:1.2rem}
 .foot-mark img{height:38px; width:auto}
 .foot-bot{margin-top:3rem; padding-top:1.5rem; border-top:1px solid rgba(203,187,160,.2); display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; font-size:.78rem; color:rgba(228,220,204,.82)}
+/* Podpis autora. Žádné „Návrh a kód:“ — značka, jméno a obor stačí, popisek
+   navíc dělal z podpisu poznámku pod čarou. Logo a text dělí stejná vlasová linka,
+   jaká je na webu všude jinde; celek je tlumený a rozsvítí se až na najetí,
+   aby v patičce nekonkuroval logu studia.
+   Logo TH. má minimální velikost 80 px, proto se nezmenšuje ani na mobilu.
+   Na barevném podkladu se podle jeho manuálu používá mono verze, ne ta s růžovou tečkou. */
+.foot-author{display:inline-flex; align-items:center; gap:.9rem; color:inherit;
+  text-decoration:none; opacity:.72; transition:opacity .4s var(--ease)}
+.foot-author:hover,.foot-author:focus-visible{opacity:1}
+.foot-author img{width:80px; height:auto; display:block; flex:none}
+.foot-author-txt{display:grid; gap:.15rem; padding-left:.9rem;
+  border-left:1px solid rgba(203,187,160,.28)}
+.foot-author-txt b{font-weight:400; font-size:.82rem; letter-spacing:.01em; color:var(--c-cream)}
+.foot-author-txt small{font-size:.66rem; text-transform:uppercase; letter-spacing:.16em;
+  color:var(--c-sand)}
+@media(max-width:479px){
+  /* Na úzkém displeji sedí podpis pod copyrightem, ne vedle něj. */
+  .foot-bot{flex-direction:column; align-items:flex-start}
+}
 
 /* ═══════════ STICKY CTA NA MOBILU ═══════════ */
 .mobile-bar{position:fixed; left:0; right:0; bottom:0; z-index:120; display:flex; gap:.5rem; padding:.6rem;
@@ -830,8 +876,8 @@ html:not(.js) .progress,.no-motion .progress{display:none}
       <h2 data-rv>Sto let stará řemesla, dnešní tělo</h2>
       <p data-rv>Masáž není wellness dekorace. Je to práce s&nbsp;tím, co si tělo odneslo z&nbsp;posledních měsíců&nbsp;—
         z&nbsp;kanceláře, z&nbsp;tréninku, ze spánku na špatném polštáři.</p>
-      <p data-rv>Nemám velký salon ani tým masérek. Jsem tu jen já, jeden lehátko a&nbsp;dost času na to,
-        abychom napětí našli a&nbsp;rozebrali, ne jen přejeli.</p>
+      <p data-rv>Nemám velký salon ani tým masérů. Jsem tu jen já, jedno lehátko a&nbsp;dost času na&nbsp;to,
+        abychom napětí opravdu našli a&nbsp;rozebrali&nbsp;— ne ho jen přejeli.</p>
       <p data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznat Lukáše</a></p>
     </div>
     <div class="duo">
@@ -923,7 +969,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
             <span class="acc-body">
               <span class="acc-n">03 — Teplo</span>
               <h3>Lávové kameny</h3>
-              <p class="acc-lead">Klidnější tempo. Když cítíš stres a&nbsp;potřebuješ prohřát svaly.</p>
+              <p class="acc-lead">Teplo, které jde hloub než ruce. Když je záda potřeba nejdřív rozehřát.</p>
               <span class="acc-deep"><span><span>
                 <ul>
                   <li>60 minut — 1 190 Kč</li>
@@ -950,7 +996,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
             <span class="acc-body">
               <span class="acc-n">04 — Lymfa</span>
               <h3>Maderoterapie kombi</h3>
-              <p class="acc-lead">Přírodní technika pro podporu lymfy. Když řešíš lymfu nebo otoky.</p>
+              <p class="acc-lead">Práce dřevěnými nástroji. Když tělo zadržuje vodu a&nbsp;nohy večer otékají.</p>
               <span class="acc-deep"><span><span>
                 <ul>
                   <li>60 minut — 1 190 Kč</li>
@@ -976,7 +1022,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
             <span class="acc-body">
               <span class="acc-n">05 — Rituál</span>
               <h3>Mangový rituál</h3>
-              <p class="acc-lead">Peeling, maska, celotělová masáž mangovým olejem a&nbsp;nápoj na&nbsp;závěr. Dvě hodiny mimo provoz.</p>
+              <p class="acc-lead">Peeling, maska, celotělová masáž mangovým olejem a&nbsp;nápoj na&nbsp;závěr. Dvě hodiny, kdy se nikam nejde.</p>
               <span class="acc-deep"><span><span>
                 <ul>
                   <li>Mangový peeling</li>
@@ -1001,7 +1047,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
               <span class="acc-shade"></span>
             </span>
             <span class="acc-body">
-              <span class="acc-n">06 — Rychlovka</span>
+              <span class="acc-n">06 — Rychle</span>
               <h3>Rychlé uvolnění</h3>
               <p class="acc-lead">Krátká cílená úleva. Když není čas, ale tělo už protestuje.</p>
               <span class="acc-deep"><span><span>
@@ -1039,7 +1085,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
             </picture></div>
     <div>
       <p class="label" data-rv>Studio</p>
-      <h2 data-rv style="font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch">Vstupte do klidu</h2>
+      <h2 data-rv style="font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch">Vejdi do klidu</h2>
       <p data-rv>Studio je otevřené jen na objednání. Nepotkáš se s&nbsp;nikým jiným, nebudeš na nic čekat
         a&nbsp;nikdo za dveřmi nečeká na tebe.</p>
       <p data-rv>Teplo, ticho, jedno lehátko. Devadesát minut, kdy po tobě nikdo nic nechce.</p>
@@ -1051,14 +1097,6 @@ html:not(.js) .progress,.no-motion .progress{display:none}
     </div>
   </div>
 
-  <div class="wide">
-    <div class="nums">
-      <div class="num" data-rv><b data-count="5" data-suffix=" let">5 let</b><span>praxe <span class="doplnit">ověřit</span></span></div>
-      <div class="num" data-rv><b data-count="1200" data-suffix="+">1200+</b><span>odmasírovaných hodin <span class="doplnit">ověřit</span></span></div>
-      <div class="num" data-rv><b>5,0</b><span>hodnocení na&nbsp;Reserviu</span></div>
-      <div class="num" data-rv><b>1:1</b><span>vždy jen vy a&nbsp;terapeut</span></div>
-    </div>
-  </div>
 </section>
 
 <!-- ═══════════ PRŮBĚH — jediná pinovaná sekce C2 ═══════════
@@ -1104,11 +1142,40 @@ html:not(.js) .progress,.no-motion .progress{display:none}
         během hodiny spadne napětí, které v&nbsp;sobě nosil měsíce.</p>
       <p data-rv>Tebe pokaždé masíruje ten samý člověk, který si pamatuje, co tě bolelo minule.
         Podle mě je to ten hlavní rozdíl.</p>
-      <p class="doplnit" data-rv>doplnit: vzdělání, kurzy, certifikace</p>
+      <!-- DOPLNIT: vzdělání, kurzy a certifikace. Sem patří 2–3 věty typu
+           „Masérský kurz X (rok), maderoterapie u Y, průběžně Z“. Bez nich sekce
+           stojí jen na osobním tónu a chybí jí doklad odbornosti. -->
       <div class="sig" data-rv><b>Lukáš Václavek</b>Masér a&nbsp;majitel studia</div>
     </div>
   </div>
 </section>
+
+<!-- ═══════════ ČÍSLA — samostatný bílý pruh ═══════════
+     Dřív visela pod sekcí „Studio“ na tmavém pozadí a splývala s ní. Jako vlastní
+     světlý pruh mezi „O mně“ a referencemi dělají přesně to, co mají: převedou
+     osobní představení na měřitelný důkaz, než přijdou slova klientů. -->
+<section class="stats">
+  <div class="wide">
+    <div class="nums">
+      <div class="num" data-rv><b id="numYears" data-count="3" data-suffix=" roky">3 roky</b><span>v&nbsp;oboru, od&nbsp;roku 2023</span></div>
+      <div class="num" data-rv><b data-count="1200" data-suffix="+">1200+</b><span>odmasírovaných hodin</span></div>
+      <div class="num" data-rv><b data-count="5" data-decimals="1">5,0</b><span>hodnocení na&nbsp;Googlu i&nbsp;Reserviu</span></div>
+      <div class="num" data-rv><b class="num-ratio" data-chars><i>1</i><i>:</i><i>1</i></b><span>vždy jen ty a&nbsp;terapeut</span></div>
+    </div>
+  </div>
+</section>
+<script>
+/* Roky praxe se počítají od roku 2023, ať číslo nezestárne. Běží i bez GSAP —
+   počítadlo si pak jen přečte, co je tu nastavené. */
+(function () {
+  var el = document.getElementById('numYears');
+  if (!el) return;
+  var n = new Date().getFullYear() - 2023;
+  if (n < 1) n = 1;
+  var suf = n === 1 ? ' rok' : (n < 5 ? ' roky' : ' let');
+  el.dataset.count = n; el.dataset.suffix = suf; el.textContent = n + suf;
+})();
+</script>
 
 <svg class="arch-div from-cream" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true" style="fill:var(--c-forest-dk)">
   <path d="M-8,128 L-8,84 L0,84 C420,84 596,0 720,0 C844,0 1020,84 1440,84 L1448,84 L1448,128 Z"></path>
@@ -1126,12 +1193,14 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <span class="stars" aria-hidden="true">★★★★★</span>
           <b>5,0</b> <span class="of">/ 5</span>
         </div>
-        <span class="src">z&nbsp;24 recenzí<br><a href="https://uvolni-to.reservio.com/reviews" target="_blank" rel="noopener">na&nbsp;Reserviu</a></span>
+        <span class="src">ze&nbsp;40 recenzí<br><a href="https://maps.google.com/?cid=11177292027840744292" target="_blank" rel="noopener">Google</a> &middot; <a href="https://uvolni-to.reservio.com/reviews" target="_blank" rel="noopener">Reservio</a></span>
       </div>
     </div>
 
-    <!-- Recenze jsou doslovné, včetně jmen a dat, z veřejného profilu
-         uvolni-to.reservio.com/reviews (staženo 6. 9. 2026). -->
+    <!-- Recenze jsou doslovné (jen zkrácené), včetně jmen a dat, ze dvou veřejných
+         profilů: uvolni-to.reservio.com/reviews a profilu uvolni.to na Mapách Google
+         (obojí ověřeno 7. 9. 2026). Google zobrazuje relativní datum („před 2 měsíci“),
+         proto je u něj uvedený jen měsíc a rok. -->
     <blockquote class="rev-lead" data-rv>
       <span class="rev-arch" aria-hidden="true"></span>
       <p>&#8222;Masáž, co vás odvane do&nbsp;úplně jiného vesmíru — bez napětí, bez stresu, do&nbsp;naprostého
@@ -1141,25 +1210,26 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 
     <div class="revs">
       <blockquote class="rev" data-rv>
+        <p>&#8222;Masáže byly úžasné, zaměřené na&nbsp;moje problémová místa, masér skvělý jak po&nbsp;profesionální
+          stránce, tak i&nbsp;lidsky. Moc útulný a&nbsp;voňavý prostor vymazlený do&nbsp;detailu.&#8220;</p>
+        <cite><span class="badge">Google</span> Lucie Ondříšková &middot; červenec 2026</cite>
+      </blockquote>
+      <blockquote class="rev" data-rv>
+        <p>&#8222;Využívám sportovní masáže po&nbsp;cvičení či namožených svalech, je to super účinné
+          a&nbsp;uvolňující. Samotné prostředí je také velmi příjemné a&nbsp;navozuje ten správný relax.&#8220;</p>
+        <cite><span class="badge">Google</span> Marek Španěl &middot; duben 2026</cite>
+      </blockquote>
+      <blockquote class="rev" data-rv>
         <p>&#8222;Nejlepší místo na&nbsp;masáž a&nbsp;odpočinek, prostě není co dodat. Profesionál v&nbsp;oboru
           s&nbsp;fakt úžasnou pozitivní energií. Vracím se opakovaně.&#8220;</p>
         <cite><span class="badge">Reservio</span> Alexandra &middot; 16.&nbsp;7.&nbsp;2026</cite>
       </blockquote>
-      <blockquote class="rev" data-rv>
-        <p>&#8222;Přišel jsem na&nbsp;funkční sportovní masáž jako vždycky a&nbsp;byla perfektní. Efektivní
-          uvolnění všeho, co mě na&nbsp;zádech bolelo. Lukáš je profík.&#8220;</p>
-        <cite><span class="badge">Reservio</span> Šimon &middot; 10.&nbsp;7.&nbsp;2026</cite>
-      </blockquote>
-      <blockquote class="rev" data-rv>
-        <p>&#8222;Oceňuji nadstandardní služby — nabídnutý čaj, možnost sprchy i&nbsp;profesionální přístup.
-          Samotná madero masáž byla naprosto skvělá, intenzita perfektní.&#8220;</p>
-        <cite><span class="badge">Reservio</span> Kristýna &middot; 29.&nbsp;5.&nbsp;2026</cite>
-      </blockquote>
     </div>
 
-    <p class="revs-note">Hodnocení i&nbsp;citace pocházejí z&nbsp;veřejného profilu
-      <a href="https://uvolni-to.reservio.com/reviews" target="_blank" rel="noopener">uvolni.to na&nbsp;Reserviu</a>
-      (5,0&nbsp;z&nbsp;5 ze&nbsp;24 recenzí, stav k&nbsp;6.&nbsp;9.&nbsp;2026). Texty jsou přepsané doslova, jen zkrácené.</p>
+    <p class="revs-note">Hodnocení i&nbsp;citace pocházejí z&nbsp;veřejných profilů
+      <a href="https://maps.google.com/?cid=11177292027840744292" target="_blank" rel="noopener">uvolni.to na&nbsp;Mapách Google</a>
+      (5,0&nbsp;z&nbsp;5 z&nbsp;16 recenzí) a&nbsp;<a href="https://uvolni-to.reservio.com/reviews" target="_blank" rel="noopener">uvolni.to na&nbsp;Reserviu</a>
+      (5,0&nbsp;z&nbsp;5 ze&nbsp;24 recenzí), stav k&nbsp;7.&nbsp;9.&nbsp;2026. Texty jsou přepsané doslova, jen zkrácené.</p>
   </div>
 </section>
 
@@ -1169,38 +1239,29 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 
 <!-- ═══════════ BENEFITY ═══════════ -->
 <section class="benef" id="benefity">
-  <div class="wide benef-grid">
-    <div>
-      <p class="label" data-rv>Platba</p>
-      <h2 data-rv style="font-size:var(--fs-h2); margin-block:1.5rem; max-width:16ch">Masáž ti může zaplatit zaměstnavatel</h2>
-      <p data-rv>Přijímám zaměstnanecké benefity&nbsp;— pro spoustu klientů to znamená, že za masáž
-        nezaplatí ze svého ani korunu. Stačí to zmínit při rezervaci.</p>
-      <div class="chips">
-        <span class="chip" data-rv>Edenred</span><span class="chip" data-rv>Benefit plus</span>
-        <span class="chip" data-rv>Hotovost</span><span class="chip" data-rv>Převodem</span>
-        <span class="chip doplnit" data-rv>Multisport? ověřit</span><span class="chip doplnit" data-rv>Pluxee? ověřit</span>
-      </div>
+  <div class="wrap">
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Platba</span><i></i></div>
+    <h2 data-rv style="margin-top:var(--space-block)">Masáž ti může zaplatit zaměstnavatel</h2>
+    <p data-rv style="margin-top:1.5rem; color:var(--c-ink-soft)">Beru zaměstnanecké benefity&nbsp;— spousta klientů
+      tak za masáž ze svého nedá ani korunu. Stačí to zmínit při&nbsp;rezervaci, nic dopředu nevyřizuješ
+      a&nbsp;platí se až na&nbsp;místě.</p>
+    <div class="chips">
+      <span class="chip" data-rv>Edenred</span><span class="chip" data-rv>Benefit plus</span>
+      <span class="chip" data-rv>Hotovost</span><span class="chip" data-rv>Převodem</span>
+      <!-- DOPLNIT: Multisport a Pluxee zatím nejsou potvrzené. Až budou, přidat sem
+           <span class="chip" data-rv>Multisport</span> a <span class="chip" data-rv>Pluxee</span>
+           a zároveň doplnit do JSON-LD (paymentAccepted) a do odpovědi ve FAQ. -->
     </div>
   </div>
 </section>
 
-<!-- ═══════════ POUKAZ ═══════════ -->
-<section class="voucher">
-  <div class="wrap">
-    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Dárkový poukaz</span><i></i></div>
-    <h2 data-rv style="margin-top:var(--space-block)">Darujte hodinu, kdy nikdo nic nechce</h2>
-    <p data-rv style="margin-top:1.5rem; color:var(--c-ink-soft)">Poukaz na libovolnou masáž nebo na konkrétní částku.
-      Platnost 12&nbsp;měsíců, předám ti ho tištěný i&nbsp;v&nbsp;PDF.</p>
-    <p data-rv><a href="#kontakt" class="btn">Objednat poukaz</a></p>
-  </div>
-</section>
 
 <!-- ═══════════ ČASTÉ DOTAZY — zdroj pro FAQPage schéma ═══════════ -->
 <section class="faq" id="faq">
   <div class="wide faq-grid">
     <div class="faq-aside">
       <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Časté dotazy</span><i></i></div>
-      <h2 data-rv>Na co se ptáte nejčastěji</h2>
+      <h2 data-rv>Na co se ptáš nejčastěji</h2>
       <p data-rv>Když tu svoji otázku nenajdeš, napiš mi. Odpovím i&nbsp;na&nbsp;to, jestli má masáž ve&nbsp;tvém případě vůbec smysl — a&nbsp;klidně tě pošlu jinam.</p>
       <p data-rv><a href="#kontakt" class="btn btn-sm">Napsat dotaz</a></p>
     </div>
@@ -1215,7 +1276,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
         </details>
         <details>
           <summary><span class="faq-mark" aria-hidden="true"></span>Můžu masáž zaplatit zaměstnaneckými benefity?</summary>
-          <div class="ans"><p>Ano. Přijímám Edenred a&nbsp;Benefit&nbsp;plus, <span class="doplnit">doplnit další programy</span>. Stačí to zmínit při rezervaci, nic dopředu neřešíš a&nbsp;platí se až na&nbsp;místě.</p></div>
+          <div class="ans"><p>Ano. Přijímám Edenred a&nbsp;Benefit&nbsp;plus. Stačí to zmínit při&nbsp;rezervaci, nic dopředu nevyřizuješ a&nbsp;platí se až na&nbsp;místě.</p></div>
         </details>
         <details>
           <summary><span class="faq-mark" aria-hidden="true"></span>Co si mám vzít s&nbsp;sebou?</summary>
@@ -1229,10 +1290,14 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <summary><span class="faq-mark" aria-hidden="true"></span>Je maderoterapie vhodná pro každého?</summary>
           <div class="ans"><p>Většinou ano, ale má svá omezení — čerstvá poranění, křečové žíly v&nbsp;místě aplikace, těhotenství nebo onkologická léčba jsou důvod se předem poradit. Napiš mi, co řešíš, a&nbsp;řeknu rovnou, jestli má smysl přijít.</p></div>
         </details>
+        <!-- DOPLNIT a odkomentovat, až bude popis dopravy a parkování. Otázka bez
+             odpovědi působila hůř než žádná otázka, proto je zatím schovaná.
+             Až se vrátí, přidat ji i do FAQPage schématu dole.
         <details>
           <summary><span class="faq-mark" aria-hidden="true"></span>Kde studio najdu a&nbsp;kde zaparkuju?</summary>
-          <div class="ans"><p><span class="doplnit">doplnit adresu, dopravu a parkování</span></p></div>
+          <div class="ans"><p>&hellip;</p></div>
         </details>
+        -->
     </div>
   </div>
 </section>
@@ -1240,7 +1305,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 <!-- ═══════════ KONTAKT + REZERVACE ═══════════ -->
 <section id="kontakt">
   <div class="wide">
-    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Kde mě najdete</span><i></i></div>
+    <div class="rule tick" style="color:var(--c-forest)"><i></i><span>Kde mě najdeš</span><i></i></div>
     <div class="contact-grid">
       <div>
         <h2 style="font-size:var(--fs-h2); margin-bottom:1.5rem">Kontakt</h2>
@@ -1248,9 +1313,13 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <div><dt>Adresa</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=49.2095845,16.6043303" class="ul" target="_blank" rel="noopener">Skřivanova 335/5, 602 00 Brno</a></dd></div>
           <div><dt>Telefon</dt><dd><a href="tel:+420608654708" class="ul">+420 608 654 708</a></dd></div>
           <div><dt>E-mail</dt><dd><a href="mailto:info@uvolnitomasaze.cz" class="ul">info@uvolnitomasaze.cz</a></dd></div>
-          <div><dt>Otevírací doba</dt><dd>Po–St 12:00–22:00<br>Čt 9:00–19:00<br>Pá 9:00–18:00<br>
-            <span class="doplnit">ověřit víkend — v Reserviu není</span></dd></div>
-          <div><dt>Parkování</dt><dd class="doplnit">doplnit</dd></div>
+          <div><dt>Otevírací doba</dt><dd>Po–St 12:00–22:00<br>Čt 9:00–19:00<br>Pá 9:00–18:00</dd></div>
+          <!-- OVĚŘIT: víkend. V Reserviu ani na Googlu nejsou sobotní/nedělní sloty,
+               proto tu zatím není ani „So–Ne zavřeno“ — dokud to klient nepotvrdí,
+               je lepší mlčet než tvrdit něco, co nemusí platit. -->
+          <!-- DOPLNIT: parkování (modrá zóna? kde nejblíž zaparkovat?)
+          <div><dt>Parkování</dt><dd>&hellip;</dd></div>
+          -->
           <div><dt>Platba</dt><dd>Hotově, převodem i&nbsp;benefitními poukazy</dd></div>
           <div><dt>Zrušení</dt><dd>Prosím alespoň 24&nbsp;hodin předem</dd></div>
         </dl>
@@ -1267,9 +1336,6 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <div id="resvFallback" class="embed-pad">
             <p style="margin-inline:auto">Termíny vede Reservio. Vyber si masáž, den a&nbsp;čas&nbsp;— potvrzení přijde e-mailem.</p>
             <p style="margin-inline:auto"><a href="https://uvolni-to.reservio.com" class="btn" target="_blank" rel="noopener">Otevřít rezervační kalendář</a></p>
-            <p id="resvWhy" class="doplnit" style="margin:1.2rem auto 0" hidden>Kalendář je vložený přímo sem, ale
-              Reservio ho pustí jen z&nbsp;adresy na https. Otevíráš tenhle soubor z&nbsp;disku, proto se místo
-              něj ukazuje tlačítko&nbsp;— na ostrém webu naskočí kalendář.</p>
           </div>
         </div>
         <p class="embed-note">Rezervace běží na&nbsp;Reserviu. Nedaří se?
@@ -1337,7 +1403,6 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <li><a href="#sluzby" class="ul">Regenerační masáž</a></li>
           <li><a href="#sluzby" class="ul">Lávové kameny</a></li>
           <li><a href="#sluzby" class="ul">Maderoterapie kombi</a></li>
-          <li><a href="#kontakt" class="ul">Dárkový poukaz</a></li>
         </ul>
       </div>
       <div>
@@ -1348,7 +1413,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <li><a href="#kontakt" class="ul">Kontakt</a></li>
           <li><a href="https://uvolnitomasaze.cz/obchodni-podminky-gdpr/" class="ul">Obchodní podmínky &amp;&nbsp;GDPR</a></li>
         </ul>
-        <h4 style="margin-top:2rem">Kde nás najdete</h4>
+        <h4 style="margin-top:2rem">Kde mě najdeš</h4>
         <ul>
           <li><a href="https://uvolni-to.reservio.com" class="ul" target="_blank" rel="noopener">Rezervace v&nbsp;Reserviu</a></li>
           <li><a href="https://www.instagram.com/uvolni.to" class="ul" target="_blank" rel="noopener">Instagram</a></li>
@@ -1358,7 +1423,13 @@ html:not(.js) .progress,.no-motion .progress{display:none}
     </div>
     <div class="foot-bot">
       <span>© 2026 Lukáš Václavek&nbsp;— IČO 19696884</span>
-      <span>Návrh: varianta C&nbsp;— „Antara“</span>
+      <a class="foot-author" href="https://tomikjmenome.github.io/portfolio/" target="_blank" rel="noopener">
+        <img src="assets/autor/TH-logo-mono-bile.svg" alt="" aria-hidden="true" width="80" height="34">
+        <span class="foot-author-txt">
+          <b>Tomáš Hájek</b>
+          <small>webdesign &amp;&nbsp;vývoj</small>
+        </span>
+      </a>
     </div>
   </div>
 </footer>
@@ -1369,7 +1440,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 </div>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":["HealthAndBeautyBusiness","LocalBusiness"],"@id":"https://uvolnitomasaze.cz/#studio","name":"uvolni.to — masáže","url":"https://uvolnitomasaze.cz/","description":"Masážní studio Lukáše Václavka v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál.","image":"https://uvolnitomasaze.cz/assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg","logo":"https://uvolnitomasaze.cz/assets/logo/ODVOZENO-wordmark-barevne.png","priceRange":"750–1890 Kč","currenciesAccepted":"CZK","paymentAccepted":"Hotově, převodem, Edenred, Benefit plus","telephone":"+420608654708","email":"info@uvolnitomasaze.cz","founder":{"@type":"Person","name":"Lukáš Václavek"},"taxID":"19696884","address":{"@type":"PostalAddress","streetAddress":"Skřivanova 335/5","addressLocality":"Brno","postalCode":"60200","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"49.2095845","longitude":"16.6043303"},"areaServed":{"@type":"City","name":"Brno"},"sameAs":["https://uvolni-to.reservio.com","https://www.instagram.com/uvolni.to","https://www.facebook.com/share/188H5EmofW/"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"12:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday"],"opens":"09:00","closes":"18:00"}],"makesOffer":[{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 60 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 90 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 120 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 60 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 90 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 120 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 60 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 90 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 60 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 90 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1890","url":"https://uvolni-to.reservio.com","name":"Mangový rituál 120 minut","itemOffered":{"@type":"Service","name":"Mangový rituál","serviceType":"Mangový rituál","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"750","url":"https://uvolni-to.reservio.com","name":"Rychlé uvolnění 30 minut","itemOffered":{"@type":"Service","name":"Rychlé uvolnění","serviceType":"Rychlé uvolnění","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}}],"hasMap":"https://www.google.com/maps/search/?api=1&query=49.2095845,16.6043303","potentialAction":{"@type":"ReserveAction","target":{"@type":"EntryPoint","urlTemplate":"https://uvolni-to.reservio.com"},"result":{"@type":"Reservation","name":"Rezervace masáže"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"24","bestRating":"5","url":"https://uvolni-to.reservio.com/reviews"}}
+{"@context":"https://schema.org","@type":["HealthAndBeautyBusiness","LocalBusiness"],"@id":"https://uvolnitomasaze.cz/#studio","name":"uvolni.to — masáže","url":"https://uvolnitomasaze.cz/","description":"Masážní studio Lukáše Václavka v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál.","image":"https://uvolnitomasaze.cz/assets/foto/WhatsApp-Image-2026-03-08-at-17.55.14.jpeg","logo":"https://uvolnitomasaze.cz/assets/logo/ODVOZENO-wordmark-barevne.png","priceRange":"750–1890 Kč","currenciesAccepted":"CZK","paymentAccepted":"Hotově, převodem, Edenred, Benefit plus","telephone":"+420608654708","email":"info@uvolnitomasaze.cz","founder":{"@type":"Person","name":"Lukáš Václavek"},"taxID":"19696884","address":{"@type":"PostalAddress","streetAddress":"Skřivanova 335/5","addressLocality":"Brno","postalCode":"60200","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"49.2095845","longitude":"16.6043303"},"areaServed":{"@type":"City","name":"Brno"},"sameAs":["https://uvolni-to.reservio.com","https://www.instagram.com/uvolni.to","https://www.facebook.com/share/188H5EmofW/","https://maps.google.com/?cid=11177292027840744292"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"12:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday"],"opens":"09:00","closes":"18:00"}],"makesOffer":[{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 60 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 90 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 120 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 60 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 90 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 120 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 60 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 90 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 60 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 90 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1890","url":"https://uvolni-to.reservio.com","name":"Mangový rituál 120 minut","itemOffered":{"@type":"Service","name":"Mangový rituál","serviceType":"Mangový rituál","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"750","url":"https://uvolni-to.reservio.com","name":"Rychlé uvolnění 30 minut","itemOffered":{"@type":"Service","name":"Rychlé uvolnění","serviceType":"Rychlé uvolnění","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}}],"hasMap":"https://www.google.com/maps/search/?api=1&query=49.2095845,16.6043303","potentialAction":{"@type":"ReserveAction","target":{"@type":"EntryPoint","urlTemplate":"https://uvolni-to.reservio.com"},"result":{"@type":"Reservation","name":"Rezervace masáže"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"40","bestRating":"5"}}
 </script>
 
 <script type="application/ld+json">
@@ -1441,11 +1512,10 @@ window.addEventListener('load', function () {
   (function () {
     var fr = document.getElementById('resvFrame'), fb = document.getElementById('resvFallback');
     if (!fr || !fb) return;
-    if (location.protocol !== 'https:') {
-      var why = document.getElementById('resvWhy');
-      if (why) why.hidden = false;
-      return;
-    }
+    /* Mimo https (soubor z disku, http://localhost) rám Reservio nepustí, tak se
+       ani nevkládá — návštěvník vidí rovnou tlačítko do nového okna. Vysvětlující
+       odstavec je pryč: na ostrém webu se nikdy neukázal a mimo něj jen mátl. */
+    if (location.protocol !== 'https:') return;
     /* Nečekat na `load` — u zablokovaného rámu se stejně ozve (z chybové stránky),
        takže se jako detektor nedá použít. Odkaz do nového okna je pod rámem vždycky. */
     fb.hidden = true;
@@ -1537,20 +1607,63 @@ window.addEventListener('load', function () {
      zapnuté piny) ScrollTrigger u už minutého spouštěče vypálil onEnter hned,
      takže počítadlo odběhlo mimo obrazovku a někdy jste ho prostě neviděli.
      IO se ozve jedině tehdy, když je prvek opravdu vidět. */
-  var counters = gsap.utils.toArray('[data-count]');
+  /* Pozor: hodnoty, které se nedají odpočítat (poměr 1:1), mají data-chars a jedou
+     po znacích. Dřív neměly nástup vůbec žádný, takže poslední dvě čísla působila,
+     jako by se animace rozbila. */
+  var counters = gsap.utils.toArray('[data-count], [data-chars]');
   if (counters.length && 'IntersectionObserver' in window) {
     var runCount = function (el) {
+      if (el.hasAttribute('data-chars')) {
+        var twc = gsap.from(el.children, {
+          opacity: 0, yPercent: 55, duration: .7, stagger: .13,
+          ease: 'power2.out', clearProps: 'all'
+        });
+        /* Stejná pojistka jako u čísel — kdyby tween zamrzl, znaky by zůstaly schované. */
+        setTimeout(function () {
+          twc.kill();
+          Array.prototype.forEach.call(el.children, function (ch) { ch.removeAttribute('style'); });
+        }, 2600);
+        return;
+      }
+      /* data-decimals kvůli hodnocení 5,0 — Math.round by z něj udělal „5“
+         a desetinná čárka musí být česká, ne tečka. */
+      var dec = parseInt(el.dataset.decimals || 0, 10);
+      var fmt = new Intl.NumberFormat('cs-CZ', { minimumFractionDigits: dec, maximumFractionDigits: dec });
       var end = parseFloat(el.dataset.count), suf = el.dataset.suffix || '', o = { v: 0 };
-      gsap.to(o, {
+      var settle = function () { el.textContent = fmt.format(end) + suf; };
+      var tw = gsap.to(o, {
         v: end, duration: 1.6, ease: 'power2.out',
-        onUpdate: function () { el.textContent = Math.round(o.v).toLocaleString('cs-CZ') + suf; }
+        onUpdate: function () { el.textContent = fmt.format(o.v) + suf; },
+        onComplete: settle
       });
+      /* POJISTKA — bez ní tu byla tichá chyba, kvůli které čísla vypadala rozbitě:
+         počítadlo běží na requestAnimationFrame (přes gsap.ticker, který krmí Lenis).
+         rAF se ale zastaví, jakmile panel přestane být vidět — přepnutá karta,
+         minimalizované okno, jiná plocha. Tween zamrzl uprostřed a číslo pak
+         natrvalo ukazovalo nesmysl typu „1 143+“ nebo „4,8“ místo „1 200+“ a „5,0“.
+         setTimeout běží i ve skryté kartě, takže po 2,6 s (tween trvá 1,6 s)
+         hodnotu vždycky dorovná. Když animace doběhla normálně, jen přepíše totéž. */
+      setTimeout(function () { tw.kill(); settle(); }, 2600);
+    };
+    /* Počítadlo se nesmí rozjet dřív, než odkrývací dávka rozsvítí celý blok.
+       IntersectionObserver se ozve i u průhledného prvku, takže při rychlém scrollu
+       (a vždycky při skoku přes kotvu) čísla doběhla ještě v neviditelnu a člověk
+       uviděl jen hotový výsledek. Proto se čeká, až rodič s data-rv nabere krytí;
+       pojistka po ~3 s spustí animaci tak jako tak, ať se nikdy nezasekne. */
+    var whenVisible = function (el, run) {
+      var rv = el.closest('[data-rv]');
+      if (!rv) return run();
+      var frames = 0;
+      (function tick() {
+        if (parseFloat(getComputedStyle(rv).opacity) > 0.85 || ++frames > 180) return run();
+        requestAnimationFrame(tick);
+      })();
     };
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        runCount(en.target);
+        whenVisible(en.target, function () { runCount(en.target); });
       });
     }, { threshold: 0.6 });
     counters.forEach(function (el) { io.observe(el); });

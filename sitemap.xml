@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Doména je zatím odhad — až bude jistá, opravit i v robots.txt a v canonical.
-     Podstránky masáží jsou dočasně odpojené (mají noindex a index.html na ně
-     neodkazuje), proto tu nejsou. Až se zapnou, vrátit sem tři <url> záznamy. -->
+     Podstránky masáží (relaxační / sportovní / maderoterapie) jsou z repa zatím
+     odstraněné — měly nevyplněné ceny a nic na ně neodkazovalo. Jsou dohledatelné
+     v git historii; až se vrátí, přidat sem tři <url> záznamy. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://uvolnitomasaze.cz/</loc>
