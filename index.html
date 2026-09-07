@@ -396,7 +396,16 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
 /* Na telefonu ta dvojice fotek jen odsouvala obsah — stejné záběry jsou
    o kus níž u jednotlivých masáží. Od tabletu výš prostor je, tam zůstávají.
    Musí to stát AŽ ZA výchozím pravidlem, jinak ho display:grid přebije. */
-@media(max-width:639px){.duo{display:none}}
+@media(max-width:639px){
+  .duo{display:none}
+  /* Bez té dvojice fotek zůstalo pod tlačítkem přes 200 px prázdna: odsazení
+     obou sekcí je stavěné na to, že vedle textu stojí sloupec s obrázky.
+     Na telefonu tam ale není nic, tak se obě odsazení zkracují.
+     Tlačítko na střed — po zmizení fotek stálo vlevo v prázdné ploše. */
+  .intro{padding-bottom:clamp(2.5rem,6vh,3.5rem)}
+  #sluzby{padding-top:clamp(2.5rem,6vh,3.5rem)}
+  .intro-cta{text-align:center}
+}
 
 /* ═══════════ SLUŽBY ═══════════ */
 .svc{background:var(--c-cream)}
@@ -637,7 +646,7 @@ html:not(.js) .hero-h1 .ln > span{transform:none}
   /* Přesně na šířku jedné karty z dvousloupcové nabídky masáží — stejná mezera,
      stejný poměr, takže obrázky po celé stránce drží jednu velikost. */
   .tranq-grid .arch,.about-grid .arch{
-    width:calc((100% - clamp(.8rem,3vw,1.4rem)) / 2); margin-inline:0;
+    width:calc((100% - clamp(.8rem,3vw,1.4rem)) / 2); margin-inline:auto;
   }
 }
 .about h2{font-size:var(--fs-h2); margin-block:1.5rem; max-width:14ch}
@@ -1041,7 +1050,7 @@ html:not(.js) .progress,.no-motion .progress{display:none}
         z&nbsp;kanceláře, z&nbsp;tréninku, ze spánku na špatném polštáři.</p>
       <p data-rv>Nemám velký salon ani tým masérů. Jsem tu jen já, jedno lehátko a&nbsp;dost času na&nbsp;to,
         abychom napětí opravdu našli a&nbsp;rozebrali&nbsp;— ne ho jen přejeli.</p>
-      <p data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznej mě</a></p>
+      <p class="intro-cta" data-rv style="margin-top:2rem"><a href="#o-mne" class="btn">Poznej mě</a></p>
     </div>
     <div class="duo">
       <div class="arch" data-rv><picture>
