@@ -54,7 +54,14 @@
 <link rel="preload" as="image" href="assets/foto/opt/2026-03-08-at-17-55-14-1066.webp" type="image/webp" fetchpriority="high" imagesrcset="assets/foto/opt/2026-03-08-at-17-55-14-500.webp 500w, assets/foto/opt/2026-03-08-at-17-55-14-900.webp 900w, assets/foto/opt/2026-03-08-at-17-55-14-1066.webp 1066w" imagesizes="100vw">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/fraunces-normal-latin-ext.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/inter-normal-latin-ext.woff2">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+document.documentElement.classList.add('js');
+/* Prohlížeč si po obnovení stránky sám vrací poslední pozici scrollu. Na webu
+   s pinovanými sekcemi to znamená, že se člověk po F5 probudí uprostřed
+   kontaktů a půlku odkrývacích animací má za sebou, aniž je viděl.
+   Musí to stát tady v hlavičce — po načtení už je pozdě, obnova proběhne dřív. */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+</script>
 
 <style>
 /* Self-hostované fonty — Google Fonts CDN posílá IP návštěvníka Googlu
@@ -2054,17 +2061,18 @@ window.addEventListener('load', function () {
     var headerH = parseFloat(getComputedStyle(document.documentElement)
       .getPropertyValue('--header-h')) || 64;
 
-    var go = function (target, hash) {
+    var go = function (target) {
       var off = -(headerH + 12);
       if (lenis) {
         lenis.scrollTo(target, { offset: off, duration: 1.15 });
       } else {
         window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY + off, behavior: 'smooth' });
       }
-      /* adresa se má změnit, ale až po skoku, ať prohlížeč nedoskočí sám */
-      if (hash && history.replaceState) history.replaceState(null, '', hash);
     };
 
+    /* Kotva se do adresy ZÁMĚRNĚ nezapisuje. Je to jedna stránka, ne rozcestník:
+       #kontakt v adrese nic nepřidával, zato se po něm nedalo obnovit stránku —
+       F5 vždycky vysypalo člověka dolů do kontaktů místo nahoru k hero. */
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href^="#"]');
       if (!a) return;
@@ -2073,13 +2081,22 @@ window.addEventListener('load', function () {
       var target = document.querySelector(hash);
       if (!target) return;
       e.preventDefault();
-      go(target, hash);
+      go(target);
     });
 
-    /* příchod z podstránky s kotvou v URL — dorolovat po dopočítání rozvržení */
-    if (location.hash && location.hash.length > 1) {
-      var t = document.querySelector(location.hash);
-      if (t) setTimeout(function () { go(t, null); }, 400);
+    /* Odkaz zvenčí s kotvou (někdo poslal adresu s #kontakt) pořád funguje:
+       dorolujeme tam po dopočítání rozvržení. Kotvu ale z adresy hned uklidíme,
+       aby další obnovení začalo zase nahoře. */
+    var hash = location.hash;
+    if (hash && hash.length > 1) {
+      var t = document.querySelector(hash);
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      if (t) setTimeout(function () { go(t); }, 400);
+      else if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
+    } else if (window.scrollY > 0) {
+      /* pojistka pro prohlížeče, které scrollRestoration neumí */
+      if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
     }
   })();
 
