@@ -1,0 +1,22 @@
+Knihovny třetích stran v assets/js/
+===================================
+
+Staženy 7. 9. 2026 a provozované z vlastního serveru, ne z CDN. Důvod je
+právní, ne výkonnostní: požadavek na cizí CDN předá IP adresu návštěvníka
+třetí straně dřív, než na to stihne kdokoli kývnout. Ze stejného důvodu jsou
+na vlastním serveru i písma (assets/fonts/).
+
+gsap.min.js, ScrollTrigger.min.js — GSAP 3.13.0
+  https://gsap.com
+  © 2025 GreenSock, Inc.
+  Standard "No Charge" GSAP License — https://gsap.com/standard-license
+  Bezplatné použití na webech, které za obsah nevybírají poplatek.
+  Zdroj: https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/
+
+lenis.min.js — Lenis 1.1.20
+  https://github.com/darkroomengineering/lenis
+  © darkroom.engineering — licence MIT
+  Zdroj: https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js
+
+Aktualizace: stáhnout novou verzi ze stejné adresy s jiným číslem verze,
+přepsat soubor a upravit číslo v tomto seznamu. Nic v HTML se nemění.

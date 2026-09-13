@@ -5,13 +5,16 @@ Jedna stránka `index.html`, žádný build — otevře se rovnou v prohlížeč
 
 ## Stav
 
-**Rozpracované.** Web je funkční, ale ještě není připravený nahradit
-ostrý web na uvolnitomasaze.cz. Viz checklist níže.
+**Nasazeno** na https://uvolnito.cz/ (WEDOS webhosting, 13. 9. 2026).
+Stará doména uvolnitomasaze.cz zatím běží na původním WordPressu — přesměrování
+na novou doménu je v plánu. Zbývající úkoly viz checklist níže.
 
 ## Struktura
 
 ```
 index.html              hlavní stránka
+pravni-informace.html   obchodní podmínky, ochrana údajů, cookies
+.htaccess               přesměrování na https + bez www, cache, hlavičky
 masaz-*.html            detaily masáží — DOČASNĚ ODPOJENÉ (noindex, index.html na ně neodkazuje)
 uvolni-to.vcf           vizitka ke stažení (vCard 3.0)
 assets/foto/            fotky studia (originály)
@@ -31,6 +34,14 @@ systému klienta (`uvolni-to.reservio.com`), stav k 6. 9. 2026. **Nejsou
 vymyšlené a nesmí se upravovat bez ověření u klienta.** Recenze jsou
 doslovné citace z veřejného profilu včetně jmen a dat.
 
+## Nasazení
+
+Statické soubory se nahrávají přes FTPS do `/www` na WEDOS hostingu. Nahrává se
+jen to, co web používá: `*.html`, `robots.txt`, `sitemap.xml`, `uvolni-to.vcf`,
+`.htaccess` a `assets/{autor,css,fonts,foto/opt,js,logo,og}`. Originály fotek,
+`*.md` a `nastroje/` na server nepatří. WEDOS vyžaduje FTPS s opakovaným použitím
+TLS relace — curl na Windows to neumí, Python `ftplib` s předaným `session` ano.
+
 ## Lokální náhled
 
 Reservio pouští svůj rezervační kalendář do `<iframe>` jen ze stránky
@@ -42,17 +53,14 @@ python3 -m http.server 8000          # stačí na všechno kromě kalendáře
 
 Pro plný náhled včetně kalendáře je potřeba https (self-signed certifikát stačí).
 
-## Před ostrým spuštěním
+## Co ještě zbývá
 
-- [ ] **`robots.txt` přepnout zpět na `Allow: /`** — teď zakazuje indexaci, aby
-      náhled nekonkuroval ostrému webu ve vyhledávání
 - [ ] doplnit chybějící údaje (v kódu označené třídou `.doplnit`): parkování,
       benefitní programy, víkendová otevírací doba, vzdělání a certifikace
 - [ ] ověřit čísla „5 let praxe" a „1 200+ odmasírovaných hodin"
-- [ ] vlastní stránka Obchodní podmínky & GDPR — teď odkazuje na starý WordPress.
-      Web nově načítá Mapy Google, což do zásad patří zmínit
 - [ ] `og:image` vyměnit za záběr na šířku (v `assets/foto/` leží dva 1920×1080)
-- [ ] doplnit `canonical`, `sitemap.xml` a `robots.txt` o finální doménu
+- [ ] přesměrovat starou doménu uvolnitomasaze.cz (301) na uvolnito.cz
+- [ ] rozhodnout o e-mailu — kontakt zatím používá info@uvolnitomasaze.cz
 - [ ] rozhodnout, jestli zapnout zpět podstránky masáží
 
 ## Licence

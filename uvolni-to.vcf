@@ -3,17 +3,15 @@ VERSION:3.0
 N:Václavek;Lukáš;;;
 FN:Lukáš Václavek — uvolni.to
 ORG:uvolni.to — masáže
-TITLE:Masér a majitel studia
+TITLE:Masér
 TEL;TYPE=CELL,VOICE:+420608654708
 EMAIL;TYPE=INTERNET,WORK:info@uvolnitomasaze.cz
 ADR;TYPE=WORK:;;Skřivanova 335/5;Brno;;602 00;Česko
 LABEL;TYPE=WORK:Skřivanova 335/5\n602 00 Brno
-URL:https://uvolnitomasaze.cz/
-URL;TYPE=Rezervace:https://uvolni-to.reservio.com
+URL:https://uvolnito.cz/
 GEO:49.2095845;16.6043303
-NOTE:Masážní studio uvolni.to. Otevřeno po objednání: Po–St 12:00
- –22:00, Čt 9:00–19:00, Pá 9:00–18:00. Rezervace na uvolni-to.reser
- vio.com.
+NOTE:Masážní studio uvolni.to, Brno. Otevřeno po objednání: Po–St 12:00–22:00
+ , Čt 9:00–19:00, Pá 9:00–18:00.
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYH
  BwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2w
  BDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo
@@ -204,5 +202,5 @@ PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYH
  rFiECZPOjPYJWdnKLF1EC23IsbfpY1tm0djU0JqgkbcIOqdQICaqmpOfOEyItp47fuKNqXZEbP
  3U8RN+/CF+hjnv5KaIyYCdwjZQ5SbmHaSeU0xhmkL3cdlDUjBpSK2effxKgE3pvViroWvnwMO5
  fSfrWL3OiattXbCvnUx/MjwVTl9NPGemf//Z
-REV:2026-09-06T00:00:00Z
+REV:2026-09-13T00:00:00Z
 END:VCARD

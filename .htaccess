@@ -1,0 +1,57 @@
+# uvolni.to — nastavení Apache na WEDOS webhostingu
+# Nahrává se do /www/.htaccess. Bloky „subdomeny / aliasy" jsou WEDOSem
+# generované a musí zůstat, jinak přestanou fungovat případné subdomény.
+
+RewriteEngine On
+
+# 1) Jediná kanonická adresa: https://uvolnito.cz/ (bez www, vždy https)
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://uvolnito.cz%{REQUEST_URI} [R=301,L]
+
+# 2) Bezpečnostní hlavičky
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# 3) Cache: fonty, obrázky a knihovny se nemění — rok. HTML vždy ověřit.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp  "access plus 1 year"
+  ExpiresByType image/jpeg  "access plus 1 year"
+  ExpiresByType image/png   "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2  "access plus 1 year"
+  ExpiresByType text/css    "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html   "access plus 0 seconds"
+</IfModule>
+
+# 4) Komprese textových souborů
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml text/vcard text/plain
+</IfModule>
+
+AddType text/vcard .vcf
+AddType font/woff2 .woff2
+
+# ---- WEDOS: subdomény a aliasy (neměnit) ----
+RewriteCond %{REQUEST_URI} !^domains/
+RewriteCond %{REQUEST_URI} !^/domains/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)$
+RewriteCond %{DOCUMENT_ROOT}/domains/%2 -d
+RewriteRule (.*) domains/%2/$1 [DPI]
+
+RewriteCond %{REQUEST_URI} !^subdom/
+RewriteCond %{REQUEST_URI} !^/subdom/
+RewriteCond %{HTTP_HOST} ^(www\.)?(.*)\.([^\.]*)\.([^\.]*)$
+RewriteCond %{DOCUMENT_ROOT}/subdom/%2 -d
+RewriteRule (.*) subdom/%2/$1 [DPI]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^domains/[^/]+/(.+[^/])$ /$1/ [R]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^subdom/[^/]+/(.+[^/])$ /$1/ [R]

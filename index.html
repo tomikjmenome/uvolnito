@@ -5,15 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Masáže Brno — relaxační, regenerační, maderoterapie | uvolni.to</title>
 <meta name="description" content="Masážní studio uvolni.to v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál. Jeden terapeut, jeden klient, dost času.">
-<link rel="canonical" href="https://uvolnitomasaze.cz/">
+<link rel="canonical" href="https://uvolnito.cz/">
 
-<!-- NÁHLED — NEINDEXOVAT.
-     Web běží na GitHub Pages jako projektový web (tomikjmenome.github.io/uvolnito/).
-     U projektového webu roboti čtou robots.txt z KOŘENE domény, ne z podadresáře,
-     takže náš /uvolnito/robots.txt se vůbec nepoužije — jediné, co indexaci
-     spolehlivě zastaví, je tenhle meta tag. Před ostrým spuštěním na vlastní
-     doméně ho smazat (a zároveň přepnout robots.txt na Allow). -->
-<meta name="robots" content="noindex, nofollow">
 
 <!-- Favicon: ODVOZENO-favicon.svg je odvozený z ikony ve značce — jediná čistá
      vektorová cesta bez živého textu, takže se nerozpadne v malých velikostech. -->
@@ -28,30 +21,24 @@
 <meta property="og:site_name" content="uvolni.to — masáže">
 <meta property="og:title" content="Masáže Brno — relaxační, regenerační, maderoterapie">
 <meta property="og:description" content="Jeden terapeut, jeden klient, dost času. Relaxační a regenerační masáže, lávové kameny a maderoterapie.">
-<meta property="og:url" content="https://tomikjmenome.github.io/uvolnito/">
+<meta property="og:url" content="https://uvolnito.cz/">
 
 <!-- Náhled odkazu (Messenger, WhatsApp, Slack, Discord, Twitter/X…).
-     POZOR: og:image MUSÍ být absolutní URL, relativní cestu většina scraperů
-     zahodí. Původní adresa mířila na uvolnitomasaze.cz a vracela 404, takže
-     se u odkazu neukazoval žádný náhled — teď míří na tenhle náhledový web.
-
-     PŘED OSTRÝM SPUŠTĚNÍM přepsat og:url, og:image a image v JSON-LD dole
-     na vlastní doménu, jinak náhled zůstane viset na github.io.
-
+     og:image MUSÍ být absolutní URL, relativní cestu většina scraperů zahodí.
      Obrázek je 1200×630 (poměr 1,91:1, který si přejí všechny sítě) a vzniká
-     skriptem nastroje/og-image.py — fotka, značkový nádech, stín pod logem
-     a krémový nápis. Po výměně fotky skript pustit znovu. -->
-<meta property="og:image" content="https://tomikjmenome.github.io/uvolnito/assets/og/uvolni-to-og.jpg">
+     skriptem nastroje/og-image.py. Po výměně fotky skript pustit znovu. -->
+<meta property="og:image" content="https://uvolnito.cz/assets/og/uvolni-to-og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="uvolni.to — masáže. Detail masáže obličeje a šíje.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tomikjmenome.github.io/uvolnito/assets/og/uvolni-to-og.jpg">
+<meta name="twitter:image" content="https://uvolnito.cz/assets/og/uvolni-to-og.jpg">
 <meta name="twitter:image:alt" content="uvolni.to — masáže. Detail masáže obličeje a šíje.">
 <meta name="theme-color" content="#304F47">
 
 <link rel="preload" as="image" href="assets/foto/opt/2026-03-08-at-17-55-14-1066.webp" type="image/webp" fetchpriority="high" imagesrcset="assets/foto/opt/2026-03-08-at-17-55-14-500.webp 500w, assets/foto/opt/2026-03-08-at-17-55-14-900.webp 900w, assets/foto/opt/2026-03-08-at-17-55-14-1066.webp 1066w" imagesizes="100vw">
+<link rel="stylesheet" href="assets/css/souhlas.css">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/fraunces-normal-latin-ext.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/inter-normal-latin-ext.woff2">
 <script>
@@ -850,6 +837,11 @@ footer.site a:hover{color:var(--c-white)}
 .foot-author-txt{display:grid; gap:.15rem; padding-left:.9rem;
   border-left:1px solid rgba(203,187,160,.28)}
 .foot-author-txt b{font-weight:400; font-size:.82rem; letter-spacing:.01em; color:var(--c-cream)}
+/* Odvolání souhlasu musí být stejně dostupné jako jeho udělení — proto
+   v patičce každé stránky, ne schované někde v textu. */
+.foot-cc{font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer;
+  border-bottom:1px solid rgba(228,220,204,.45); transition:border-color .35s var(--ease)}
+.foot-cc:hover{border-color:currentColor}
 .foot-author-txt small{font-size:.66rem; text-transform:uppercase; letter-spacing:.16em;
   color:var(--c-sand)}
 @media(max-width:479px){
@@ -1530,13 +1522,23 @@ html:not(.js) .progress,.no-motion .progress{display:none}
              rám zůstane prázdný, proto se vkládá až v JS a jinak se ukáže odkaz. -->
         <div class="embed embed-book">
           <iframe id="resvFrame" title="Rezervační kalendář uvolni.to"
-                  data-src="https://uvolni-to.reservio.com/services"
+                  data-cc-src="https://uvolni-to.reservio.com/services"
+                  data-cc-kat="vlozeny-obsah"
+                  data-cc-nazev="Rezervační kalendář"
+                  data-cc-popis="Kalendář běží na Reserviu. Při zobrazení ve stránce si Reservio uloží vlastní cookies a uvidí tvoji IP adresu. Rezervovat jde i v novém okně pod rámem."
+                  data-cc-tlacitko="Zobrazit kalendář"
+                  data-cc-odkaz="https://uvolni-to.reservio.com"
+                  data-cc-odkaz-text="Rezervovat v novém okně"
+                  data-cc-zaloha="resvFallback"
+                  data-cc-jen-https
                   loading="lazy" referrerpolicy="origin-when-cross-origin" hidden></iframe>
           <div id="resvFallback" class="embed-pad">
             <p style="margin-inline:auto">Termíny vede Reservio. Vyber si masáž, den a&nbsp;čas&nbsp;— potvrzení přijde e-mailem.</p>
             <p style="margin-inline:auto"><a href="https://uvolni-to.reservio.com" class="btn" target="_blank" rel="noopener">Otevřít rezervační kalendář</a></p>
           </div>
         </div>
+        <p class="embed-note">Zrušení zdarma do&nbsp;24&nbsp;hodin před termínem&nbsp;—
+          <a href="pravni-informace.html#op-storno" class="ul">storno podmínky</a>.</p>
         <p class="embed-note">Rezervace běží na&nbsp;Reserviu. Nedaří se?
           <a href="https://uvolni-to.reservio.com" class="ul" target="_blank" rel="noopener">Otevři kalendář v&nbsp;novém okně</a>
           nebo zavolej na&nbsp;<a href="tel:+420608654708" class="ul">+420 608 654 708</a>.</p>
@@ -1561,13 +1563,20 @@ html:not(.js) .progress,.no-motion .progress{display:none}
       <a class="btn" href="uvolni-to.vcf" download="Lukas-Vaclavek-uvolni-to.vcf" type="text/vcard">Uložit kontakt</a>
     </div>
 
-    <!-- Mapa se načítá sama, jen odloženě (loading="lazy") — požadavek na Google
-         odejde teprve když se k ní člověk doscrolluje, ne hned při otevření stránky. -->
+    <!-- Mapa se vkládá teprve se souhlasem (assets/js/souhlas.js): adresa je
+         v data-cc-src, ne v src, takže bez kývnutí neodejde na Google jediný
+         požadavek — tedy ani IP adresa návštěvníka. Do té doby je na jejím
+         místě zástupná plocha s textem níž a odkaz „Otevřít v Mapách", který
+         funguje vždycky. loading="lazy" zůstává pro případ po souhlasu. -->
     <div class="mapa" data-rv>
       <div class="mapa-box">
-        <iframe src="https://maps.google.com/maps?q=49.2095845,16.6043303&amp;z=16&amp;hl=cs&amp;output=embed"
+        <iframe data-cc-src="https://maps.google.com/maps?q=49.2095845,16.6043303&amp;z=16&amp;hl=cs&amp;output=embed"
+                data-cc-kat="vlozeny-obsah"
+                data-cc-nazev="Mapa Google"
+                data-cc-popis="Mapa se načítá ze serverů Google, které si přitom uloží cookies a uvidí tvoji IP adresu."
+                data-cc-tlacitko="Zobrazit mapu"
                 title="Mapa — Skřivanova 335/5, Brno" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                referrerpolicy="no-referrer-when-downgrade" allowfullscreen hidden></iframe>
       </div>
       <p class="mapa-note">Skřivanova 335/5&nbsp;— kousek od&nbsp;Lidické, pár minut od&nbsp;Lužánek.
         <a href="https://www.google.com/maps/search/?api=1&amp;query=49.2095845,16.6043303" class="ul" target="_blank" rel="noopener">Otevřít v&nbsp;Mapách</a>.</p>
@@ -1610,7 +1619,11 @@ html:not(.js) .progress,.no-motion .progress{display:none}
           <li><a href="#o-mne" class="ul">O mně</a></li>
           <li><a href="#benefity" class="ul">Benefity</a></li>
           <li><a href="#kontakt" class="ul">Kontakt</a></li>
-          <li><a href="https://uvolnitomasaze.cz/obchodni-podminky-gdpr/" class="ul">Obchodní podmínky &amp;&nbsp;GDPR</a></li>
+          <!-- Původní odkaz mířil na https://uvolnitomasaze.cz/obchodni-podminky-gdpr/,
+               což vrací 404 — dokumenty na starém webu leží pod /blog/. Teď jsou
+               tady, každý zvlášť, jak vyžaduje GDPR (souhlas ke konkrétnímu rozsahu)
+               i zákon o ochraně spotřebitele (podmínky dostupné před objednáním). -->
+          <li><a href="pravni-informace.html" class="ul">Právní informace</a></li>
         </ul>
         <h4 style="margin-top:2rem">Kde mě najdeš</h4>
         <ul>
@@ -1621,7 +1634,11 @@ html:not(.js) .progress,.no-motion .progress{display:none}
       </div>
     </div>
     <div class="foot-bot">
-      <span>© 2026 Lukáš Václavek&nbsp;— IČO 19696884</span>
+      <!-- Povinná identifikace podnikatele: § 435 obč. zák. a § 17 živnostenského
+           zákona. Údaj o zápisu v živnostenském rejstříku je jeho součástí. -->
+      <span>© 2026 Lukáš Václavek&nbsp;— IČO 19696884, zapsán v&nbsp;živnostenském rejstříku
+        Živnostenského úřadu města&nbsp;Brna &middot;
+        <button type="button" class="foot-cc" data-cc-otevrit>Nastavení cookies</button></span>
       <a class="foot-author" href="https://tomikjmenome.github.io/portfolio/" target="_blank" rel="noopener">
         <img src="assets/autor/TH-logo-mono-bile.svg" alt="" aria-hidden="true" width="80" height="34">
         <span class="foot-author-txt">
@@ -1639,16 +1656,21 @@ html:not(.js) .progress,.no-motion .progress{display:none}
 </div>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":["HealthAndBeautyBusiness","LocalBusiness"],"@id":"https://uvolnitomasaze.cz/#studio","name":"uvolni.to — masáže","url":"https://uvolnitomasaze.cz/","description":"Masážní studio Lukáše Václavka v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál.","image":"https://tomikjmenome.github.io/uvolnito/assets/og/uvolni-to-og.jpg","logo":"https://tomikjmenome.github.io/uvolnito/assets/logo/ODVOZENO-wordmark-barevne.png","priceRange":"750–1890 Kč","currenciesAccepted":"CZK","paymentAccepted":"Hotově, převodem, Edenred, Benefit plus","telephone":"+420608654708","email":"info@uvolnitomasaze.cz","founder":{"@type":"Person","name":"Lukáš Václavek"},"taxID":"19696884","address":{"@type":"PostalAddress","streetAddress":"Skřivanova 335/5","addressLocality":"Brno","postalCode":"60200","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"49.2095845","longitude":"16.6043303"},"areaServed":{"@type":"City","name":"Brno"},"sameAs":["https://uvolni-to.reservio.com","https://www.instagram.com/uvolni.to","https://www.facebook.com/share/188H5EmofW/","https://maps.google.com/?cid=11177292027840744292"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"12:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday"],"opens":"09:00","closes":"18:00"}],"makesOffer":[{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 60 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 90 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 120 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 60 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 90 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 120 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 60 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 90 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 60 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 90 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1890","url":"https://uvolni-to.reservio.com","name":"Mangový rituál 120 minut","itemOffered":{"@type":"Service","name":"Mangový rituál","serviceType":"Mangový rituál","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"750","url":"https://uvolni-to.reservio.com","name":"Rychlé uvolnění 30 minut","itemOffered":{"@type":"Service","name":"Rychlé uvolnění","serviceType":"Rychlé uvolnění","provider":{"@id":"https://uvolnitomasaze.cz/#studio"}}}],"hasMap":"https://www.google.com/maps/search/?api=1&query=49.2095845,16.6043303","potentialAction":{"@type":"ReserveAction","target":{"@type":"EntryPoint","urlTemplate":"https://uvolni-to.reservio.com"},"result":{"@type":"Reservation","name":"Rezervace masáže"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"40","bestRating":"5"}}
+{"@context":"https://schema.org","@type":["HealthAndBeautyBusiness","LocalBusiness"],"@id":"https://uvolnito.cz/#studio","name":"uvolni.to — masáže","url":"https://uvolnito.cz/","description":"Masážní studio Lukáše Václavka v Brně. Relaxační a regenerační masáže, lávové kameny, maderoterapie a mangový rituál.","image":"https://uvolnito.cz/assets/og/uvolni-to-og.jpg","logo":"https://uvolnito.cz/assets/logo/ODVOZENO-wordmark-barevne.png","priceRange":"750–1890 Kč","currenciesAccepted":"CZK","paymentAccepted":"Hotově, převodem, Edenred, Benefit plus","telephone":"+420608654708","email":"info@uvolnitomasaze.cz","founder":{"@type":"Person","name":"Lukáš Václavek"},"taxID":"19696884","address":{"@type":"PostalAddress","streetAddress":"Skřivanova 335/5","addressLocality":"Brno","postalCode":"60200","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"49.2095845","longitude":"16.6043303"},"areaServed":{"@type":"City","name":"Brno"},"sameAs":["https://uvolni-to.reservio.com","https://www.instagram.com/uvolni.to","https://www.facebook.com/share/188H5EmofW/","https://maps.google.com/?cid=11177292027840744292"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"12:00","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday"],"opens":"09:00","closes":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday"],"opens":"09:00","closes":"18:00"}],"makesOffer":[{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 60 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 90 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Relaxační masáž 120 minut","itemOffered":{"@type":"Service","name":"Relaxační masáž","serviceType":"Relaxační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"990","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 60 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1290","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 90 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1590","url":"https://uvolni-to.reservio.com","name":"Regenerační masáž 120 minut","itemOffered":{"@type":"Service","name":"Regenerační masáž","serviceType":"Regenerační masáž","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 60 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Lávové kameny 90 minut","itemOffered":{"@type":"Service","name":"Lávové kameny","serviceType":"Lávové kameny","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1190","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 60 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1490","url":"https://uvolni-to.reservio.com","name":"Maderoterapie kombi 90 minut","itemOffered":{"@type":"Service","name":"Maderoterapie kombi","serviceType":"Maderoterapie kombi","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"1890","url":"https://uvolni-to.reservio.com","name":"Mangový rituál 120 minut","itemOffered":{"@type":"Service","name":"Mangový rituál","serviceType":"Mangový rituál","provider":{"@id":"https://uvolnito.cz/#studio"}}},{"@type":"Offer","priceCurrency":"CZK","price":"750","url":"https://uvolni-to.reservio.com","name":"Rychlé uvolnění 30 minut","itemOffered":{"@type":"Service","name":"Rychlé uvolnění","serviceType":"Rychlé uvolnění","provider":{"@id":"https://uvolnito.cz/#studio"}}}],"hasMap":"https://www.google.com/maps/search/?api=1&query=49.2095845,16.6043303","potentialAction":{"@type":"ReserveAction","target":{"@type":"EntryPoint","urlTemplate":"https://uvolni-to.reservio.com"},"result":{"@type":"Reservation","name":"Rezervace masáže"}},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"40","bestRating":"5"}}
 </script>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Musí masáž bolet, aby zabrala?","acceptedAnswer":{"@type":"Answer","text":"Ne. Bolest je informace, ne cíl. Tlak nastavíme během prvních minut tak, aby byl na hraně příjemného, a kdykoli během masáže si můžeš říct o míň. Sval, který se brání, se stejně neuvolní."}},{"@type":"Question","name":"Jak často má smysl chodit?","acceptedAnswer":{"@type":"Answer","text":"U sedavé práce a tuhnoucí šíje obvykle jednou za tři až čtyři týdny. U sportovní regenerace podle tréninkového cyklu. Na konci každé masáže dostaneš odhad, kdy má smysl přijít znovu — někdy je odpověď, že zatím vůbec."}},{"@type":"Question","name":"Co si mám vzít s sebou?","acceptedAnswer":{"@type":"Answer","text":"Nic. Ručníky, prostěradlo i olej jsou tady. Přijď radši o pár minut dřív, ať se dá v klidu projít, co tě trápí, a nekrátí to čas na lehátku."}},{"@type":"Question","name":"Musím být úplně svlečený?","acceptedAnswer":{"@type":"Answer","text":"Ne. Odkrývá se vždy jen partie, na které se zrovna pracuje, zbytek těla je přikrytý. Spodní prádlo si necháváš."}},{"@type":"Question","name":"Je maderoterapie vhodná pro každého?","acceptedAnswer":{"@type":"Answer","text":"Většinou ano, ale má svá omezení — čerstvá poranění, křečové žíly v místě aplikace, těhotenství nebo onkologická léčba jsou důvod se předem poradit. Napiš mi, co řešíš, a řeknu rovnou, jestli má smysl přijít."}}]}
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<!-- Knihovny běží z vlastního serveru, ne z CDN. Důvod je stejný jako
+     u písem výš: požadavek na cizí CDN posílá IP adresu návštěvníka třetí
+     straně dřív, než na to stihne kdokoli kývnout. Verze a licence:
+     assets/js/LICENCE-knihovny.txt. -->
+<script src="assets/js/gsap.min.js" defer></script>
+<script src="assets/js/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/lenis.min.js" defer></script>
+<script src="assets/js/souhlas.js" defer></script>
 <script defer>
 window.addEventListener('load', function () {
   var REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1705,22 +1727,10 @@ window.addEventListener('load', function () {
   }
 
   /* ═══ Rezervační rám ═══
-     Reservio povoluje vložení jen z https původu. Když stránku otevřete
-     ze souboru nebo z http, rám by zůstal prázdný — proto se v tom případě
-     vůbec nenasazuje a zůstane odkaz do nového okna. */
-  (function () {
-    var fr = document.getElementById('resvFrame'), fb = document.getElementById('resvFallback');
-    if (!fr || !fb) return;
-    /* Mimo https (soubor z disku, http://localhost) rám Reservio nepustí, tak se
-       ani nevkládá — návštěvník vidí rovnou tlačítko do nového okna. Vysvětlující
-       odstavec je pryč: na ostrém webu se nikdy neukázal a mimo něj jen mátl. */
-    if (location.protocol !== 'https:') return;
-    /* Nečekat na `load` — u zablokovaného rámu se stejně ozve (z chybové stránky),
-       takže se jako detektor nedá použít. Odkaz do nového okna je pod rámem vždycky. */
-    fb.hidden = true;
-    fr.hidden = false;
-    fr.src = fr.dataset.src;
-  })();
+     Nasazení rámu si od souhlasu s cookies přebral assets/js/souhlas.js:
+     rám má data-cc-src místo src, data-cc-jen-https drží původní pojistku
+     (Reservio pustí vložení jen z https, jinak zůstane odkaz do nového okna)
+     a data-cc-zaloha="resvFallback" schová záložní odstavec, až rám naskočí. */
 
   /* ═══ Piktogram mizí, jakmile fotka dorazí ═══
      Musí to být tady, nad odbočkou pro reduced-motion a chybějící GSAP —

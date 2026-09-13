@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SOUHLAS S COOKIES — vzhled
+   Sdílí se mezi index.html a právními podstránkami, proto samostatný soubor.
+   Barvy a písma bere z tokenů, které si definuje každá stránka sama
+   (index.html inline, podstránky v pravni.css). Fallbacky v var() jsou tam
+   pro případ, že by se lišta ocitla na stránce bez tokenů.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.cc{
+  position:fixed; z-index:200;
+  left:var(--pad,1.25rem); right:var(--pad,1.25rem); bottom:1.25rem;
+  max-width:30rem;
+  background:var(--c-cream,#F7F3EC); color:var(--c-ink,#1B211F);
+  border:1px solid rgba(48,79,71,.16); border-radius:var(--radius,4px);
+  box-shadow:0 24px 60px -24px rgba(34,58,52,.55), 0 2px 6px rgba(34,58,52,.08);
+  font-family:var(--font-body,system-ui,sans-serif); font-weight:300;
+  font-size:.92rem; line-height:1.6;
+  /* Lišta se nesmí protáhnout přes celou výšku obrazovky, když si někdo
+     rozbalí nastavení na malém telefonu — vnitřek se v tom případě roluje. */
+  max-height:calc(100svh - 6rem); display:flex; flex-direction:column;
+}
+/* Písková vlasová linka nahoře — stejný účetní motiv jako zbytek webu. */
+.cc::before{content:""; position:absolute; inset:0 0 auto 0; height:2px;
+  background:var(--c-sand,#CBBBA0); border-radius:var(--radius,4px) var(--radius,4px) 0 0}
+
+/* Na mobilu sedí nad lepivým pruhem „Zavolat / Rezervovat" (ten je vysoký 76 px),
+   aby nezakryla hlavní CTA. Nad 640 px lepivý pruh neexistuje. */
+@media(max-width:639px){ .cc{bottom:calc(76px + .75rem)} }
+
+.cc[hidden]{display:none}
+
+/* Nájezd zespodu. Při vypnutém pohybu se lišta jen objeví. */
+@media(prefers-reduced-motion:no-preference){
+  .cc{animation:cc-in .5s cubic-bezier(.22,.61,.36,1) both}
+  @keyframes cc-in{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+}
+
+.cc-body{padding:1.6rem 1.5rem 1.4rem; overflow-y:auto}
+
+.cc-label{
+  display:flex; align-items:center; gap:.8rem;
+  font-size:.62rem; text-transform:uppercase; letter-spacing:.2em;
+  color:var(--c-moss,#4A6E64); margin:0 0 .9rem;
+}
+.cc-label::before{content:""; width:2rem; height:1px; background:var(--c-sand,#CBBBA0); flex:none}
+
+.cc h2{
+  font-family:var(--font-display,Georgia,serif); font-weight:300;
+  letter-spacing:-.02em; line-height:1.1;
+  font-size:1.5rem; margin:0 0 .6rem;
+}
+.cc p{margin:0 0 1.1rem; max-width:none; color:var(--c-ink-soft,#55605C)}
+.cc a{color:inherit; text-decoration:underline; text-underline-offset:3px;
+  text-decoration-color:var(--c-sand,#CBBBA0); text-decoration-thickness:1px}
+.cc a:hover{text-decoration-color:currentColor}
+
+/* ── tlačítka ─────────────────────────────────────────────────────────── */
+.cc-akce{display:flex; flex-wrap:wrap; gap:.6rem; align-items:center}
+.cc-btn{
+  font-family:inherit; cursor:pointer;
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-size:.72rem; font-weight:400; letter-spacing:.12em; text-transform:uppercase;
+  padding:.8rem 1.5rem; border-radius:999px;
+  border:1px solid var(--c-forest,#304F47);
+  background:var(--c-forest,#304F47); color:var(--c-cream,#F7F3EC);
+  transition:background .35s var(--ease,ease), color .35s var(--ease,ease);
+}
+.cc-btn::before{content:""; width:5px; height:5px; border-radius:50%;
+  background:var(--c-sand,#CBBBA0); flex:none}
+.cc-btn:hover{background:transparent; color:var(--c-forest,#304F47)}
+.cc-btn-2{background:transparent; color:var(--c-forest,#304F47)}
+.cc-btn-2::before{background:var(--c-sage,#8FA79E)}
+.cc-btn-2:hover{background:var(--c-forest,#304F47); color:var(--c-cream,#F7F3EC)}
+
+/* „Nastavení" je odkaz, ne třetí tlačítko — ať je volba jasně dvojí. */
+.cc-vic{
+  margin-left:auto; font-family:inherit; cursor:pointer;
+  background:none; border:0; padding:.4rem 0;
+  font-size:.68rem; text-transform:uppercase; letter-spacing:.14em;
+  color:var(--c-ink-soft,#55605C);
+  border-bottom:1px solid rgba(48,79,71,.3);
+  transition:color .3s var(--ease,ease), border-color .3s var(--ease,ease);
+}
+.cc-vic:hover{color:var(--c-forest,#304F47); border-color:var(--c-forest,#304F47)}
+
+/* ── rozbalené nastavení ──────────────────────────────────────────────── */
+.cc-panel{margin:.2rem 0 1.2rem; border-top:1px solid rgba(48,79,71,.14)}
+.cc-panel[hidden]{display:none}
+
+.cc-radek{
+  display:grid; grid-template-columns:1fr auto; gap:.4rem 1rem; align-items:start;
+  padding:1rem 0; border-bottom:1px solid rgba(48,79,71,.1);
+}
+.cc-radek b{font-weight:400; font-size:.92rem}
+.cc-radek small{grid-column:1/-1; display:block; font-size:.78rem;
+  color:var(--c-ink-soft,#55605C); line-height:1.5}
+
+/* Přepínač: kolejnice pískově-krémová, jezdec lesní. Bez pilulkových
+   gradientů, drží se ostrého a klidného rejstříku webu. */
+.cc-sw{position:relative; flex:none; width:2.6rem; height:1.4rem; display:inline-block}
+.cc-sw input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
+.cc-sw i{
+  position:absolute; inset:0; border-radius:999px; pointer-events:none;
+  background:var(--c-sand-lt,#E4DCCC); border:1px solid rgba(48,79,71,.2);
+  transition:background .3s var(--ease,ease), border-color .3s var(--ease,ease);
+}
+.cc-sw i::after{
+  content:""; position:absolute; top:50%; left:.18rem; width:1rem; height:1rem;
+  margin-top:-.5rem; border-radius:50%; background:var(--c-sage,#8FA79E);
+  transition:transform .3s var(--ease,ease), background .3s var(--ease,ease);
+}
+.cc-sw input:checked + i{background:var(--c-forest,#304F47); border-color:var(--c-forest,#304F47)}
+.cc-sw input:checked + i::after{background:var(--c-sand,#CBBBA0); transform:translateX(1.2rem)}
+.cc-sw input:focus-visible + i{outline:2px solid var(--c-sand,#CBBBA0); outline-offset:3px}
+.cc-sw input:disabled{cursor:default}
+.cc-sw input:disabled + i{opacity:.55}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ZÁSTUPNÁ PLOCHA MÍSTO VLOŽENÉHO OBSAHU
+   Dokud není souhlas, nesmí odejít jediný požadavek na Reservio ani na
+   Google. Místo rámu je proto vidět tohle — a jedním tlačítkem se obsah
+   načte i bez plošného souhlasu (souhlas jen pro tuhle návštěvu obrazovky).
+   ═══════════════════════════════════════════════════════════════════════ */
+.cc-zastup{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.9rem; text-align:center;
+  padding:clamp(2rem,6vw,3.5rem) 1.5rem;
+  background:var(--c-sand-lt,#E4DCCC); color:var(--c-ink,#1B211F);
+  min-height:100%;
+}
+.cc-zastup p{margin:0; max-width:34ch; font-size:.9rem; color:var(--c-ink-soft,#55605C)}
+.cc-zastup .cc-label{margin:0; justify-content:center; text-align:center}
+.cc-zastup .cc-odkaz{
+  font-size:.78rem; text-transform:uppercase; letter-spacing:.12em;
+  color:var(--c-forest,#304F47); text-decoration:none;
+  border-bottom:1px solid var(--c-sand,#CBBBA0); padding-bottom:2px;
+  transition:border-color .3s var(--ease,ease);
+}
+.cc-zastup .cc-odkaz:hover{border-color:currentColor}
+
+/* Uvnitř rezervačního rámečku nemá plocha z čeho vzít výšku (rám je skrytý),
+   tak si ji řekne sama — jinak by z celé sekce zbyl proužek. */
+.embed-book .cc-zastup{min-height:clamp(20rem,40vh,26rem)}
