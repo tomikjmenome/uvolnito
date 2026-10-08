@@ -1,0 +1,13 @@
+# Přes web jsou dostupné jen vstupní skripty. Knihovny, data a konfigurace ne.
+Options -Indexes
+
+<FilesMatch "^(config|config\.example)\.php$">
+  Require all denied
+</FilesMatch>
+
+# dev-posta.php se na ostrém serveru vypíná i tady (v configu je navíc 'dev' => false)
+<Files "dev-posta.php">
+  Require all denied
+</Files>
+
+RedirectMatch 403 ^/api/(lib|data)(/|$)

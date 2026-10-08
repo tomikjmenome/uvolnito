@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Náhled e-mailů — poukazy</title>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  :root{--c-forest:#304F47;--c-sand:#CBBBA0;--c-sand-lt:#E4DCCC;--c-cream:#F7F3EC;--c-ink:#1B211F;--c-ink-soft:#55605C;--radius:4px;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--c-cream);color:var(--c-ink);font-family:"Inter",system-ui,sans-serif}
+  header{padding:28px 24px 8px;max-width:1400px;margin:0 auto}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.02em;margin:0 0 6px;color:var(--c-forest)}
+  p{margin:0;color:var(--c-ink-soft);max-width:68ch}
+  .tabs{display:flex;gap:8px;margin:20px 0 0;flex-wrap:wrap}
+  .tabs button{font:inherit;font-size:14px;padding:9px 16px;border:1px solid var(--c-forest);background:transparent;color:var(--c-forest);border-radius:var(--radius);cursor:pointer}
+  .tabs button[aria-pressed="true"]{background:var(--c-forest);color:var(--c-cream)}
+  .tabs button:focus-visible{outline:2px solid var(--c-sand);outline-offset:2px}
+  main{display:flex;gap:32px;padding:24px;max-width:1400px;margin:0 auto;align-items:flex-start;flex-wrap:wrap}
+  figure{margin:0}
+  figcaption{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--c-ink-soft);margin-bottom:8px}
+  iframe{border:1px solid var(--c-sand);background:#fff;border-radius:var(--radius);display:block}
+  .desk iframe{width:680px;height:1900px;max-width:calc(100vw - 48px)}
+  .mob iframe{width:375px;height:1900px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Náhled e-mailů k&nbsp;poukazům</h1>
+  <p>Návrh, ukázková data. Místa označená [DOPLNIT] čekají na&nbsp;odpovědi od&nbsp;Lukáše. Fonty Fraunces a&nbsp;Inter se v&nbsp;části poštovních programů nenačtou&nbsp;— pak naskočí Georgia a&nbsp;systémové písmo.</p>
+  <div class="tabs" role="group" aria-label="Který e-mail">
+    <button type="button" data-src="zakaznik.html" aria-pressed="true">Zákazníkovi</button>
+    <button type="button" data-src="lukas.html" aria-pressed="false">Lukášovi</button>
+  </div>
+</header>
+<main>
+  <figure class="desk"><figcaption>Počítač</figcaption><iframe id="f1" src="zakaznik.html" title="Náhled na počítači"></iframe></figure>
+  <figure class="mob"><figcaption>Mobil 375 px</figcaption><iframe id="f2" src="zakaznik.html" title="Náhled na mobilu"></iframe></figure>
+</main>
+<script>
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+      document.getElementById('f1').src = b.dataset.src;
+      document.getElementById('f2').src = b.dataset.src;
+    });
+  });
+</script>
+</body>
+</html>

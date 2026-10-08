@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Objednávka poukazu UT-2026-0042</title>
+<!--
+  NÁVRH e-mailu zákazníkovi po objednání poukazu.
+  Ukázková data: Lávové kameny 90 min, doručení e-mailem obdarovanému k 24. 12. 2026.
+  V ostré verzi doplní PHP místo ukázkových hodnot. Obrázky půjdou jako CID přílohy
+  (src="cid:logo", "cid:foto", "cid:qr"), tady jsou kvůli náhledu relativní cesty.
+  Pravidla e-mailového HTML: tabulky, inline styly, žádný JS, šířka 600 px.
+-->
+<!--[if mso]>
+<noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+<style>td,th,div,p,a,h1,h2{font-family:Georgia,serif;}</style>
+<![endif]-->
+<style>
+  @font-face{font-family:"Fraunces";font-style:normal;font-weight:300 700;src:url(https://uvolnito.cz/assets/fonts/fraunces-normal-latin-ext.woff2) format("woff2");}
+  @font-face{font-family:"Fraunces";font-style:italic;font-weight:300 700;src:url(https://uvolnito.cz/assets/fonts/fraunces-italic-latin-ext.woff2) format("woff2");}
+  body{margin:0;padding:0;}
+  a{color:#304F47;}
+  @media only screen and (max-width:620px){
+    .wrap{width:100% !important;}
+    .px{padding-left:24px !important;padding-right:24px !important;}
+    .h1{font-size:30px !important;line-height:34px !important;}
+    .stack{display:block !important;width:100% !important;}
+    .stack-gap{padding-top:20px !important;padding-left:0 !important;text-align:left !important;}
+    .lbl{width:118px !important;}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#E4DCCC;-webkit-text-size-adjust:100%;">
+
+<!-- preheader: text, který se ukáže v náhledu schránky vedle předmětu -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;font-size:1px;line-height:1px;color:#E4DCCC;">
+  Lávové kameny 90 minut · 1 490 Kč · platební údaje a QR kód uvnitř.&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;&#8199;&#847;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#E4DCCC;">
+<tr><td align="center" style="padding:32px 12px;">
+
+  <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#F7F3EC;">
+
+    <!-- HLAVIČKA -->
+    <tr>
+      <td align="center" style="background-color:#304F47;padding:28px 40px 24px;" class="px">
+        <img src="../assets/logo/ODVOZENO-wordmark-kremove.png" width="112" height="41" alt="uvolni.to masáže" style="display:block;border:0;width:112px;height:41px;">
+        <p style="margin:14px 0 0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:16px;letter-spacing:2px;text-transform:uppercase;color:#CBBBA0;">Dárkový poukaz</p>
+      </td>
+    </tr>
+
+    <!-- FOTKA VYBRANÉ MASÁŽE -->
+    <tr>
+      <td style="padding:0;line-height:0;font-size:0;">
+        <img src="obrazky/lavove-kameny-1200x600.jpg" width="600" height="300" alt="Lávové kameny na zádech" style="display:block;border:0;width:100%;max-width:600px;height:auto;">
+      </td>
+    </tr>
+
+    <!-- ÚVOD -->
+    <tr>
+      <td class="px" style="padding:40px 48px 8px;">
+        <p style="margin:0 0 12px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:16px;letter-spacing:2px;text-transform:uppercase;color:#55605C;">Objednávka UT-2026-0042</p>
+        <h1 class="h1" style="margin:0 0 18px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-weight:400;font-size:36px;line-height:40px;letter-spacing:-0.5px;color:#304F47;">Díky, poukaz je skoro na&nbsp;cestě.</h1>
+        <p style="margin:0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:16px;line-height:26px;color:#1B211F;">Ahoj Petře, objednávku mám. Zbývá jen poslat platbu&nbsp;— jakmile dorazí, poukaz pošlu přesně podle objednávky. Níž najdeš rekapitulaci a&nbsp;platební údaje.</p>
+      </td>
+    </tr>
+
+    <!-- REKAPITULACE POUKAZU -->
+    <tr>
+      <td class="px" style="padding:32px 48px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #CBBBA0;">
+          <tr>
+            <td style="padding:24px 0 6px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;color:#1B211F;">Lávové kameny</td>
+            <td align="right" style="padding:24px 0 6px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:24px;line-height:30px;color:#1B211F;white-space:nowrap;">1&nbsp;490&nbsp;Kč</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding:0 0 20px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:14px;line-height:22px;color:#55605C;">90 minut · platnost 6&nbsp;měsíců od vystavení</td>
+          </tr>
+        </table>
+
+        <!-- vzkaz tak, jak bude na poukazu -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#E4DCCC;">
+          <tr>
+            <td style="padding:22px 24px;border-left:3px solid #304F47;">
+              <p style="margin:0 0 8px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:16px;letter-spacing:2px;text-transform:uppercase;color:#55605C;">Na poukazu bude</p>
+              <p style="margin:0 0 4px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:22px;color:#1B211F;">Pro <strong>Janu</strong></p>
+              <p style="margin:0 0 10px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-style:italic;font-size:19px;line-height:28px;color:#304F47;">„Za všechny ty večery, kdy jsi to táhla sama. Teď je řada na&nbsp;tobě.“</p>
+              <p style="margin:0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:22px;color:#1B211F;">Od <strong>Petra</strong></p>
+            </td>
+          </tr>
+        </table>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:8px;">
+          <tr>
+            <td class="lbl" width="150" style="padding:14px 0;border-bottom:1px solid #E4DCCC;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:14px;line-height:20px;color:#55605C;vertical-align:top;">Doručení</td>
+            <td style="padding:14px 0;border-bottom:1px solid #E4DCCC;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:22px;color:#1B211F;">E-mailem (PDF) přímo obdarované na&nbsp;jana.novakova@example.cz</td>
+          </tr>
+          <!-- VARIANTA POŠTA: místo řádku výš
+          <tr>
+            <td …>Doručení</td>
+            <td …>Poštou, tištěný poukaz<br>Jana Nováková, Lidická 12, 602 00 Brno</td>
+          </tr>
+          <tr><td …>Poštovné</td><td …>[DOPLNIT] Kč</td></tr>
+          -->
+          <tr>
+            <td class="lbl" width="150" style="padding:14px 0;border-bottom:1px solid #E4DCCC;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:14px;line-height:20px;color:#55605C;vertical-align:top;">Datum doručení</td>
+            <td style="padding:14px 0;border-bottom:1px solid #E4DCCC;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:22px;color:#1B211F;"><strong>24.&nbsp;12.&nbsp;2026 (čtvrtek)</strong></td>
+            <!-- bez data: „Hned po připsání platby“; u pošty: „Má dorazit nejpozději 24. 12. 2026 (čtvrtek)“ -->
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- PLATBA -->
+    <tr>
+      <td class="px" style="padding:36px 48px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#304F47;">
+          <tr>
+            <td style="padding:28px 28px 8px;">
+              <p style="margin:0 0 6px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:11px;line-height:16px;letter-spacing:2px;text-transform:uppercase;color:#CBBBA0;">Zbývá zaplatit převodem</p>
+              <p style="margin:0;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:40px;line-height:46px;color:#F7F3EC;">1&nbsp;490&nbsp;Kč</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 28px 28px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td class="stack" valign="top" style="vertical-align:top;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="padding:8px 0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:13px;line-height:18px;color:#CBBBA0;">Číslo účtu</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:0 0 10px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:17px;line-height:24px;color:#F7F3EC;font-weight:600;">[DOPLNIT]/[kód banky]</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0 0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:13px;line-height:18px;color:#CBBBA0;">Variabilní symbol</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:0 0 10px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:17px;line-height:24px;color:#F7F3EC;font-weight:600;">20260042</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:8px 0 0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:13px;line-height:18px;color:#CBBBA0;">Zpráva pro příjemce</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:17px;line-height:24px;color:#F7F3EC;font-weight:600;">Poukaz UT-2026-0042</td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td class="stack stack-gap" width="168" valign="top" align="right" style="vertical-align:top;padding-left:20px;">
+                    <!-- QR Platba: v ostré verzi <img src="cid:qr" width="148" height="148"> vygenerovaný ze SPAYD -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF;">
+                      <tr>
+                        <td width="148" height="148" align="center" valign="middle" style="width:148px;height:148px;padding:10px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:17px;color:#55605C;text-align:center;">QR Platba<br>doplní se<br>s&nbsp;číslem účtu</td>
+                      </tr>
+                    </table>
+                    <p style="margin:8px 0 0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:17px;color:#CBBBA0;text-align:left;">Naskenuj v&nbsp;bankovní aplikaci</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- CO BUDE DÁL -->
+    <tr>
+      <td class="px" style="padding:40px 48px 8px;">
+        <h2 style="margin:0 0 20px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-weight:400;font-size:24px;line-height:30px;color:#304F47;">Co bude dál</h2>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td width="44" valign="top" style="padding:0 0 18px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:20px;line-height:24px;color:#CBBBA0;">01</td>
+            <td valign="top" style="padding:0 0 18px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:24px;color:#1B211F;">Pošleš platbu. Převod obvykle dorazí do&nbsp;1–2&nbsp;pracovních dnů.</td>
+          </tr>
+          <tr>
+            <td width="44" valign="top" style="padding:0 0 18px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:20px;line-height:24px;color:#CBBBA0;">02</td>
+            <td valign="top" style="padding:0 0 18px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:24px;color:#1B211F;"><strong>24.&nbsp;12.&nbsp;2026</strong> pošlu poukaz Janě na&nbsp;e-mail. Kdyby platba dorazila až po tomhle datu, pošlu ho hned, jak přijde.</td>
+          </tr>
+          <tr>
+            <td width="44" valign="top" style="padding:0 0 18px;font-family:Fraunces,Georgia,'Times New Roman',serif;font-size:20px;line-height:24px;color:#CBBBA0;">03</td>
+            <td valign="top" style="padding:0 0 18px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:24px;color:#1B211F;">Jana si termín zarezervuje online na&nbsp;<a href="https://uvolni-to.reservio.com" style="color:#304F47;">uvolni-to.reservio.com</a> a&nbsp;poukaz přinese s&nbsp;sebou.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- PODPIS -->
+    <tr>
+      <td class="px" style="padding:8px 48px 40px;">
+        <p style="margin:0 0 4px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:15px;line-height:24px;color:#1B211F;">Kdyby cokoli, stačí odpovědět na&nbsp;tenhle e-mail.</p>
+        <p style="margin:0;font-family:Fraunces,Georgia,'Times New Roman',serif;font-style:italic;font-size:20px;line-height:28px;color:#304F47;">Lukáš</p>
+      </td>
+    </tr>
+
+    <!-- DROBNÉ PÍSMO -->
+    <tr>
+      <td class="px" style="padding:20px 48px;border-top:1px solid #E4DCCC;">
+        <p style="margin:0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:19px;color:#55605C;">Poukaz platí 6&nbsp;měsíců od vystavení a&nbsp;je přenosný. Na&nbsp;dražší masáž se doplácí rozdíl, za&nbsp;peníze se nevyměňuje. Od&nbsp;objednávky můžeš do&nbsp;14&nbsp;dnů od&nbsp;převzetí poukazu odstoupit, pokud k&nbsp;němu ještě není domluvený termín. Celé znění v&nbsp;<a href="https://uvolnito.cz/pravni-informace.html#op-poukazy" style="color:#304F47;">obchodních podmínkách</a>.</p>
+      </td>
+    </tr>
+
+    <!-- PATIČKA -->
+    <tr>
+      <td class="px" align="center" style="background-color:#223A34;padding:28px 40px;">
+        <p style="margin:0 0 6px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:13px;line-height:20px;color:#F7F3EC;">uvolni.to · Skřivanova 335/5, 602&nbsp;00 Brno</p>
+        <p style="margin:0 0 6px;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:13px;line-height:20px;"><a href="tel:+420608654708" style="color:#CBBBA0;text-decoration:none;">+420 608 654 708</a> &nbsp;·&nbsp; <a href="https://uvolnito.cz/" style="color:#CBBBA0;text-decoration:none;">uvolnito.cz</a></p>
+        <p style="margin:0;font-family:Inter,-apple-system,'Segoe UI',Arial,sans-serif;font-size:12px;line-height:18px;color:#8FA79E;">Lukáš Václavek · IČO 19696884</p>
+      </td>
+    </tr>
+
+  </table>
+
+</td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Návrhy podstránek — uvolni.to</title>
+<link rel="stylesheet" href="spolecne.css">
+<style>
+  body{padding-bottom:0}
+  .top{padding-block:clamp(3rem,8vh,5rem) 2rem}
+  .top h1{font-size:var(--fs-h2); color:var(--c-forest); margin:1.2rem 0 1rem}
+  .top p{color:var(--c-ink-soft)}
+  .vars{display:grid; gap:2rem; padding-bottom:5rem}
+  @media(min-width:900px){.vars{grid-template-columns:1fr 1fr}}
+  .var{border:1px solid var(--c-sand); border-radius:var(--radius); background:var(--c-white); overflow:hidden; display:flex; flex-direction:column}
+  .var iframe{width:100%; height:520px; border:0; border-bottom:1px solid var(--c-sand-lt); pointer-events:none}
+  .var div{padding:1.6rem}
+  .var h2{font-size:var(--fs-h3); margin-bottom:.6rem}
+  .var ul{margin:0 0 1.4rem; padding-left:1.1rem; color:var(--c-ink-soft); font-size:.95rem}
+</style>
+</head>
+<body>
+<div class="wrap top">
+  <p class="label">Návrhy · podstránky masáží</p>
+  <h1>Podstránky masáží</h1>
+  <p>Obě varianty mají stejný obsah, SEO i&nbsp;strukturu podle <code>PODSTRANKY-SUPERPROMPT.md</code>. Liší se jen tím, jak
+    se k&nbsp;němu staví. Vybraná varianta se pak použije pro všech šest masáží. Texty označené [OVĚŘIT] a&nbsp;[DOPLNIT] čekají na&nbsp;Lukáše.</p>
+</div>
+<div class="wrap" style="padding-bottom:2.5rem">
+  <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.6rem">
+    <li><a class="btn btn-sm" href="relaxacni-masaz.html">Relaxační masáž</a></li>
+    <li><a class="btn btn-sm" href="regeneracni-masaz.html">Regenerační masáž</a></li>
+    <li><a class="btn btn-sm" href="masaz-lavovymi-kameny.html">Lávové kameny</a></li>
+    <li><a class="btn btn-sm" href="maderoterapie.html">Maderoterapie kombi</a></li>
+    <li><a class="btn btn-sm" href="mangovy-ritual.html">Mangový rituál</a></li>
+    <li><a class="btn btn-sm" href="rychle-uvolneni.html">Rychlé uvolnění</a></li>
+  </ul>
+  <p style="margin-top:1rem; font-size:var(--fs-small); color:var(--c-ink-soft)">Všech šest stránek vzniká z&nbsp;jedné šablony (<code>_sablona.html</code>) skriptem <code>_generuj.py</code> — úpravy dělat tam, ne v&nbsp;hotových HTML. Níž původní srovnání variant.</p>
+</div>
+<div class="wrap vars">
+  <article class="var" style="grid-column:1/-1">
+    <iframe src="masaz-lavovymi-kameny.html" title="Náhled spojené verze" loading="lazy" tabindex="-1"></iframe>
+    <div>
+      <h2>Spojená verze — hero z&nbsp;B, tělo z&nbsp;A <small style="font-size:.6em; color:var(--c-moss)">aktuální</small></h2>
+      <ul>
+        <li>Ceny a&nbsp;popisy ověřené v&nbsp;Reserviu 2.&nbsp;10.&nbsp;2026, neověřitelné texty jsou lorem ipsum</li>
+        <li>Citát na&nbsp;středu, dole všech pět zbývajících masáží</li>
+      </ul>
+      <a href="masaz-lavovymi-kameny.html" class="btn btn-sm">Otevřít spojenou verzi</a>
+    </div>
+  </article>
+  <article class="var">
+    <iframe src="varianta-a-svetla.html" title="Náhled varianty A" loading="lazy" tabindex="-1"></iframe>
+    <div>
+      <h2>A — Světlá</h2>
+      <ul>
+        <li>Krémová stránka, fotka v&nbsp;oblouku vedle nadpisu, velké číslo masáže</li>
+        <li>Víc se liší od tmavé homepage — podstránka působí jako klidné čtení</li>
+        <li>Ceník jako dvě karty, tmavý je jen pruh s&nbsp;referencí</li>
+      </ul>
+      <a href="varianta-a-svetla.html" class="btn btn-sm">Otevřít variantu A</a>
+    </div>
+  </article>
+  <article class="var">
+    <iframe src="varianta-b-tmava.html" title="Náhled varianty B" loading="lazy" tabindex="-1"></iframe>
+    <div>
+      <h2>B — Tmavá</h2>
+      <ul>
+        <li>Fotka přes celou šířku a&nbsp;fakta v&nbsp;pruhu dole — blíž úvodní stránce</li>
+        <li>Na počítači rezervační karta s&nbsp;cenou, která jede s&nbsp;tebou při&nbsp;čtení</li>
+        <li>Dlouhý text v&nbsp;jednom sloupci, tmavý box „Kdy raději ne“</li>
+      </ul>
+      <a href="varianta-b-tmava.html" class="btn btn-sm">Otevřít variantu B</a>
+    </div>
+  </article>
+</div>
+</body>
+</html>

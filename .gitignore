@@ -22,3 +22,11 @@ _nahled-https/
 # Originály od klienta (neupravené, plné rozlišení) — repo je veřejné,
 # do webu jdou jen odvozené oříznuté verze v assets/foto/opt/.
 assets/foto-od-klienta/
+
+# Poukazy — konfigurace s heslem a data objednávek nikdy do gitu
+api/config.php
+api/data/
+api/lib/vendor/tfpdf/font/unifont/*.json
+api/lib/vendor/tfpdf/font/unifont/*.dat
+api/lib/vendor/tfpdf/font/unifont/*.mtx.php
+api/lib/vendor/tfpdf/font/unifont/*.cw127.php

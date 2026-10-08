@@ -1,0 +1,16 @@
+{
+  "_poznamka": "JEDINÉ místo s cenami poukazů. Čte ho formulář (assets/js/poukazy.js) i server (api/). Ceny odpovídají Reserviu k 2. 10. 2026. Při změně ceny upravit i záložní ceny v poukazy.html (zobrazí se jen bez JavaScriptu). posta_aktivni: false = doručení poštou je ve formuláři vidět, ale nejde vybrat; po zapnutí odebrat i disabled a text „připravujeme“ v poukazy.html.",
+  "posta_aktivni": false,
+  "postovne": 99,
+  "platnost_mesicu": 6,
+  "masaze": [
+    { "id": "relaxacni",       "nazev": "Relaxační masáž",     "foto": "2026-03-08-at-17-44-40", "foto_jpg": "1066", "pozice": 0.40, "email_foto": "relaxacni",       "delky": { "60": 990,  "90": 1290, "120": 1590 } },
+    { "id": "regeneracni",     "nazev": "Regenerační masáž",   "foto": "2026-03-08-at-18-06-27", "foto_jpg": "1066", "pozice": 0.40, "email_foto": "regeneracni",     "delky": { "60": 990,  "90": 1290, "120": 1590 } },
+    { "id": "lavove-kameny",   "nazev": "Lávové kameny",       "foto": "2026-03-08-at-17-42-34", "foto_jpg": "1066", "pozice": 0.46, "email_foto": "lavove-kameny",   "delky": { "60": 1190, "90": 1490 } },
+    { "id": "maderoterapie",   "nazev": "Maderoterapie kombi", "foto": "2026-03-08-at-17-52-32", "foto_jpg": "1354", "pozice": 0.36, "email_foto": "maderoterapie",   "delky": { "60": 1190, "90": 1490 } },
+    { "id": "mangovy-ritual",  "nazev": "Mangový rituál",      "foto": "2026-03-08-at-18-18-50", "foto_jpg": "900",  "pozice": 0.52, "email_foto": "mangovy-ritual",  "delky": { "120": 1890 } },
+    { "id": "rychle-uvolneni", "nazev": "Rychlé uvolnění",     "foto": "2026-03-08-at-18-06-56", "foto_jpg": "1066", "pozice": 0.62, "email_foto": "rychle-uvolneni", "delky": { "30": 750 } }
+  ],
+  "hodnoty": [1000, 2000],
+  "hodnota_foto": { "foto": "2026-03-08-at-17-56-21", "foto_jpg": "1066", "pozice": 0.45, "email_foto": "hodnota" }
+}
